@@ -1,0 +1,18 @@
+--- xbmc-pvr-addons-1.0.0~git20121222.1009-0482a89.orig/addons/pvr.vdr.vnsi/vdr-plugin-vnsiserver/Makefile
++++ xbmc-pvr-addons-1.0.0~git20121222.1009-0482a89/addons/pvr.vdr.vnsi/vdr-plugin-vnsiserver/Makefile
+@@ -80,7 +80,7 @@ all: libvdr-$(PLUGIN).so
+ 
+ libvdr-$(PLUGIN).so: $(OBJS)
+ 	$(CXX) $(CXXFLAGS) -shared $(OBJS) -o $@
+-	@cp $@ $(LIBDIR)/$@.$(APIVERSION)
++	@cp $@ $@.$(APIVERSION)
+ 
+ dist: clean
+ 	@-rm -rf $(TMPDIR)/$(ARCHIVE)
+@@ -94,5 +94,6 @@ clean:
+ 	@-rm -f $(OBJS) $(DEPFILE) *.so *.tgz core* *~
+ 
+ install:
++	@cp $@ $(LIBDIR)/$@.$(APIVERSION)
+ 	@install -d ../../man
+ 	@install README ../../man/$(PLUGIN).man

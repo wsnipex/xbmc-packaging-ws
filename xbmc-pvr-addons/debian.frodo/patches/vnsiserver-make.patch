@@ -1,0 +1,38 @@
+From c514d6e3ddab39f42a7ea1c36e5c951c58ddaa17 Mon Sep 17 00:00:00 2001
+From: wsnipex <wsnipex@a1.net>
+Date: Thu, 3 Jan 2013 11:11:59 +0100
+Subject: [PATCH] vnsiserver: fix build with vdr < 1.7.34
+
+---
+ addons/pvr.vdr.vnsi/vdr-plugin-vnsiserver/Makefile |    6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/addons/pvr.vdr.vnsi/vdr-plugin-vnsiserver/Makefile b/addons/pvr.vdr.vnsi/vdr-plugin-vnsiserver/Makefile
+index 28b857b..b39dfe3 100644
+--- a/addons/pvr.vdr.vnsi/vdr-plugin-vnsiserver/Makefile
++++ b/addons/pvr.vdr.vnsi/vdr-plugin-vnsiserver/Makefile
+@@ -17,8 +17,12 @@ VERSION = $(shell grep 'static const char \*VERSION *=' vnsi.h | awk '{ print $$
+ 
+ # Use package data if installed...otherwise assume we're under the VDR source directory:
+ PKGCFG = $(if $(VDRDIR),$(shell pkg-config --variable=$(1) $(VDRDIR)/vdr.pc),$(shell pkg-config --variable=$(1) vdr || pkg-config --variable=$(1) ../../../vdr.pc))
++ifeq ($(strip $(LIBDIR)),)
+ LIBDIR = $(DESTDIR)$(call PKGCFG,libdir)
++endif
++ifeq ($(strip $(LOCDIR)),)
+ LOCDIR = $(DESTDIR)$(call PKGCFG,locdir)
++endif
+ #
+ TMPDIR ?= /tmp
+ 
+@@ -135,7 +139,7 @@ install-i18n: $(I18Nmsgs)
+ $(SOFILE): $(OBJS)
+ 	$(CXX) $(CXXFLAGS) $(LDFLAGS) -shared $(OBJS) -o $@
+ ifdef API1733
+-	@cp $@ $(LIBDIR)/$@.$(APIVERSION)
++	@cp $@ $@.$(APIVERSION)
+ endif
+ 
+ install-lib: $(SOFILE)
+-- 
+1.7.10
+

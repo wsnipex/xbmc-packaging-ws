@@ -1,0 +1,8 @@
+xbmc-pvr-addons (1.0.0~git20130104.1408-5a47b5b-0dist) dist; urgency=high
+
+  [Rainer Hochecker]
+   * makefile
+
+  * Initial release 
+
+ -- wsnipex <wsnipex@a1.net>  Fri, 21 Dec 2012 11:06:07 +0100

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+if [ -f collectsysteminfo.sh ]
+then
+    cp collectsysteminfo.sh /usr/bin
+    chmod +x /usr/bin/collectsysteminfo.sh
+fi
+#DEBHELPER#
+exit 0

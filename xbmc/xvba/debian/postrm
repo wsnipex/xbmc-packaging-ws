@@ -1,0 +1,17 @@
+#! /bin/sh
+
+# Abort if any command returns an error value
+set -e
+case "$1" in
+  remove)
+    [ -f /usr/bin/collectsysteminfo.sh ] && rm /usr/bin/collectsysteminfo.sh
+    ;;
+  purge)
+    [ -f /usr/bin/collectsysteminfo.sh ] && rm /usr/bin/collectsysteminfo.sh
+    ;;
+  abort-install)
+    [ -f /usr/bin/collectsysteminfo.sh ] && rm /usr/bin/collectsysteminfo.sh
+    ;;
+esac
+#DEBHELPER#
+exit 0

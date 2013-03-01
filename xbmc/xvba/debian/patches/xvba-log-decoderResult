@@ -1,0 +1,23 @@
+Description: log result of decoder
+ log result of xvba decoder.
+Author: wsnipex <wsnipex@a1.net>
+
+--- xbmc-12.0~git20120710.1400-c971589.orig/xbmc/cores/dvdplayer/DVDCodecs/Video/XVBA.cpp
++++ xbmc-12.0~git20120710.1400-c971589/xbmc/cores/dvdplayer/DVDCodecs/Video/XVBA.cpp
+@@ -646,13 +646,14 @@ bool CDecoder::CreateSession(AVCodecCont
+   {
+     SetError(__FUNCTION__, "failed to create decoder session", __LINE__);
+     CLog::Log(LOGERROR, "Decoder failed with following stats: m_surfaceWidth %u, m_surfaceHeight %u,"
+-                        " m_vidWidth %u, m_vidHeight %u, coded_width %d, coded_height %d",
++                        " m_vidWidth %u, m_vidHeight %u, coded_width %d, coded_height %d, Error %d",
+                         m_xvbaConfig.surfaceWidth,
+                         m_xvbaConfig.surfaceHeight,
+                         m_xvbaConfig.vidWidth,
+                         m_xvbaConfig.vidHeight,
+                         avctx->coded_width,
+-                        avctx->coded_height);
++                        avctx->coded_height,
++			Success);
+     return false;
+   }
+   m_xvbaConfig.xvbaSession = sessionOutput.session;

@@ -1,0 +1,150 @@
+xbmc (2:12.0~git20121113.1838-de7d19e-0natty) natty; urgency=high
+
+  * xvba: redesign
+  * videorefclock: add advanced setting to control polling mode
+  * xvba, vdpau: fix deadlock when changing refrate
+  * player: debug logs and some cleanup
+  * X11: refresh window after having received xrandr event
+
+  * xvba: fix segfault
+  * player: logging
+  * rendermanager: do not reset buffers in configure
+
+  * xvba: make sure video surfaces are not referenced by other pics before releasing
+  * player: reduce threshold to show hurry log
+
+  * rebase with upstream
+
+  * linuxrenderer: delete correct texture targets on reconfigure
+
+  * xvba: enhance pre cleanup, used for switching channels
+
+  * xvba: chasing zombie pics 
+
+  * fix audio issue
+
+  * xvba: better strategy of transfer surface 
+
+  * rebase with upstream
+
+  * rebase with upstream - going towards frodo ;)
+  * cleanup
+
+  * ffmpeg: avfilter depends on avformat
+  * adjust remote.xml after 72ae059 
+
+  * merge upstream
+
+  * vnsi fixes
+  * merge upstream
+
+  * fix h264 L3.1 artifacts
+  * adjust VC-1 to new ffmpeg
+
+  * merge upstream
+  * Audio Engine fixes
+  * xrandr fix
+
+  * X11 events and mouse fixes
+  * Video/Gui scramble fixed
+  * Video ReferenceClock fixed
+  * high CPU load fixed
+
+  * cleanup
+  * X11: enable dual head support
+
+  * enable vdpau support
+  * X11: fix resize and resolution
+
+  * VideoPlayer: fix dropping for steams with no valid timestamps
+  * X11: hook video reference clock in windowing
+  * X11: video ref clock fix
+
+  * X11: the fancy world of ATI: fix crash in ref clock
+
+  * X11: deactivate screen saver on startup
+  * X11: fix video calibrations
+
+  * X11: change method of going full-screen
+
+  * xvba: correct h.264 level in case it was encoded wrongly
+  * X11: reset key repeat and key modifier on focus lost and gain
+  * xvba: fix registration within ffmpeg
+
+  * rebase with upstream
+  * X11: check for window manager
+  * X11: dont set window on xrandr if no mode available
+  * linuxrenderer: delete texture targets on reconfigure
+  * threads: fix linux thread prio in case user has no entry in limits.conf
+  * dirty regions: dont add invisible controls to the tracker
+
+  * Audio Engine fixes
+  * fixed: ineffective ALSA HDMI device whitelist check 
+
+  * merge upstream
+  * X11: fix crash after a resolution change on startup
+  * (hopefully) fix asic hang on AMD
+
+  * XVBA: wait for unfinished decoding jobs before destroying session
+  * dvdplayer: observe pts counter overflow
+  * ffmpeg: observe pts counter overflow when seeking
+
+  * merge upstream
+  * enable ssh/sftp support
+
+  * merge upstream
+  * youtube fix
+  * include external pvr-addons
+
+  * merge upstream
+  * dvdplayer audio: improve a/v when using skip/dupe method
+  * video player: present correct pts to user for a/v sync
+
+  * merge upstream
+  * linuxrenderer improvements
+  * fix addons on amd64
+  * dvdplayer audio: improve a/v when using skip/dupe method
+  * audio: fix GetDelay for SoftAE
+  * xvba: fix compiler warnings
+  * X11: lock graphics context in NotifyXRREvent
+  * videoplayer: fix calcDropRequirement for forced deinterlacing
+  * fix major memory leak
+
+  * merge upstream
+  * vdpau: fix upscaling
+  * link taglib statically
+  * fix HD audio
+  
+  * merge upstream 
+  * selected fixes
+  * xvba: reduce needed memory
+
+  * merge upstream
+  * dvdplayer: fix mem leak and seeking
+  * rendermanager: fix stuttering in non full-screen mode
+  
+  * merge upstream
+
+  * merge upstream
+  * vdpau: fix small mem leak
+  * pvr: drop method UpdateStreams in demuxer
+  * pvr: re-parse extradata after a streamchange
+  * xvba: do not render if there is no valid texture
+
+  * enabled vaapi
+  * merge upstream
+  * pvr fixes
+  * seeking fixes
+
+  * merge upstream
+  * fix rewind
+ 
+  * enable build of cmyth pvr addon
+  * xvba: do not create decoder for surfaces larger than width 2048 or height 1536
+
+  * merge upstream
+  * xvba: add string for available decoders
+ 
+  * merge upstream
+
+ -- wsnipex <wsnipex@a1.net>  Sun, 04 Nov 2012 09:41:54 +0100

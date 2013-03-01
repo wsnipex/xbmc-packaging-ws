@@ -1,0 +1,40 @@
+Description: youtube
+ youtube search fix
+Author: wsnipex <wsnipex@a1.net>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: http://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- xbmc-12.0~git20120827.1158-160c827.orig/xbmc/interfaces/python/xbmcmodule/keyboard.cpp
++++ xbmc-12.0~git20120827.1158-160c827/xbmc/interfaces/python/xbmcmodule/keyboard.cpp
+@@ -92,6 +92,9 @@ namespace PYXBMC
+ 
+     if (!PyArg_ParseTuple(args, (char*)"|i", &autoClose)) return NULL;
+ 
++    if (g_windowManager.IsWindowActive(WINDOW_DIALOG_PROGRESS))
++      g_windowManager.CloseDialogs();
++
+     PyXBMCGUILock();
+     pKeyboard->Initialize();
+     pKeyboard->SetHeading(self->strHeading);
+--- xbmc-12.0~git20120827.1158-160c827.orig/xbmc/filesystem/PluginDirectory.cpp
++++ xbmc-12.0~git20120827.1158-160c827/xbmc/filesystem/PluginDirectory.cpp
+@@ -491,7 +491,7 @@ bool CPluginDirectory::WaitOnScriptResul
+     }
+ 
+     // check whether we should pop up the progress dialog
+-    if (!progressBar && XbmcThreads::SystemClockMillis() - startTime > timeBeforeProgressBar)
++    if (!progressBar && XbmcThreads::SystemClockMillis() - startTime > timeBeforeProgressBar && !g_windowManager.HasModalDialog())
+     { // loading takes more then 1.5 secs, show a progress dialog
+       progressBar = (CGUIDialogProgress *)g_windowManager.GetWindow(WINDOW_DIALOG_PROGRESS);
+ 

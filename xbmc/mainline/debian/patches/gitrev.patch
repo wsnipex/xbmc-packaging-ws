@@ -1,0 +1,30 @@
+From fe357280dbd2148c563f02ea3092985f53a878af Mon Sep 17 00:00:00 2001
+From: wsnipex <wsnipex@a1.net>
+Date: Sun, 9 Dec 2012 14:37:21 +0100
+Subject: [PATCH] allow gitrev to be read from file needed for building
+ outside of a git repo
+
+---
+ configure.in |    6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/configure.in b/configure.in
+index ef3ae69..307b4b0 100644
+--- a/configure.in
++++ b/configure.in
+@@ -2135,7 +2135,11 @@ if test "$HAVE_GIT" = "yes"; then
+   GIT_REV=$(git --no-pager log --abbrev=7 -n 1 --pretty=format:"%h %ci" HEAD | awk '{gsub("-", "");print $2"-"$1}')
+ fi
+ if test "$GIT_REV" = ""; then
+-  GIT_REV="Unknown"
++  if test -f gitrev ; then
++    GIT_REV=$(cat gitrev)
++  else
++    GIT_REV="Unknown"
++  fi
+ fi
+ if test "$host_vendor" = "apple"; then
+   echo "#define GIT_REV \"$GIT_REV\"" > git_revision.h
+-- 
+1.7.10
+

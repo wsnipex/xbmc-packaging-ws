@@ -1,0 +1,430 @@
+From 0a249b447d24fa197a15eeb24e482a7b7a98f43d Mon Sep 17 00:00:00 2001
+From: Jonathan Marshall <jmarshall@never.you.mind>
+Date: Sun, 12 Aug 2012 21:28:14 +1200
+Subject: [PATCH 1/7] adds prototype for cancelling directory progress from
+ CDirectory::GetDirectory
+
+---
+ xbmc/filesystem/Directory.cpp |    1 +
+ xbmc/filesystem/IDirectory.h  |    5 +++++
+ 2 files changed, 6 insertions(+)
+
+diff --git a/xbmc/filesystem/Directory.cpp b/xbmc/filesystem/Directory.cpp
+index 522d1d8..470a233 100644
+--- a/xbmc/filesystem/Directory.cpp
++++ b/xbmc/filesystem/Directory.cpp
+@@ -165,6 +165,7 @@ bool CDirectory::GetDirectory(const CStdString& strPath, CFileItemList &items, c
+               if(dialog->IsCanceled())
+               {
+                 cancel = true;
++                pDirectory->CancelDirectory();
+                 break;
+               }
+ 
+diff --git a/xbmc/filesystem/IDirectory.h b/xbmc/filesystem/IDirectory.h
+index 419176a..6ebd816 100644
+--- a/xbmc/filesystem/IDirectory.h
++++ b/xbmc/filesystem/IDirectory.h
+@@ -70,6 +70,11 @@ class IDirectory
+    */
+   virtual bool GetDirectory(const CStdString& strPath, CFileItemList &items) = 0;
+   /*!
++   \brief Cancel the current directory fetch (if possible).
++   \sa GetDirectory
++   */
++  virtual void CancelDirectory() { };
++  /*!
+   \brief Create the directory
+   \param strPath Directory to create.
+   \return Returns \e true, if directory is created or if it already exists
+-- 
+1.7.10
+
+
+From 834e3b505de48a9d1a4f241150cd103103bb4a6a Mon Sep 17 00:00:00 2001
+From: Jonathan Marshall <jmarshall@never.you.mind>
+Date: Sun, 12 Aug 2012 21:29:24 +1200
+Subject: [PATCH 2/7] drop the progress dialog from plugins retrieving
+ folders, preferring to use the busy dialog from
+ CDirectory::GetDirectory. Fixes #13244
+
+---
+ xbmc/filesystem/PluginDirectory.cpp |   22 +++++++++++++++-------
+ xbmc/filesystem/PluginDirectory.h   |    1 +
+ 2 files changed, 16 insertions(+), 7 deletions(-)
+
+diff --git a/xbmc/filesystem/PluginDirectory.cpp b/xbmc/filesystem/PluginDirectory.cpp
+index 2a35eef..76348f3 100644
+--- a/xbmc/filesystem/PluginDirectory.cpp
++++ b/xbmc/filesystem/PluginDirectory.cpp
+@@ -464,6 +464,7 @@ bool CPluginDirectory::WaitOnScriptResult(const CStdString &scriptPath, const CS
+ 
+   unsigned int startTime = XbmcThreads::SystemClockMillis();
+   CGUIDialogProgress *progressBar = NULL;
++  bool cancelled = false;
+ 
+   CLog::Log(LOGDEBUG, "%s - waiting on the %s plugin...", __FUNCTION__, scriptName.c_str());
+   while (true)
+@@ -491,7 +492,7 @@ bool CPluginDirectory::WaitOnScriptResult(const CStdString &scriptPath, const CS
+     }
+ 
+     // check whether we should pop up the progress dialog
+-    if (!progressBar && XbmcThreads::SystemClockMillis() - startTime > timeBeforeProgressBar)
++    if (!retrievingDir && !progressBar && XbmcThreads::SystemClockMillis() - startTime > timeBeforeProgressBar)
+     { // loading takes more then 1.5 secs, show a progress dialog
+       progressBar = (CGUIDialogProgress *)g_windowManager.GetWindow(WINDOW_DIALOG_PROGRESS);
+ 
+@@ -531,12 +532,15 @@ bool CPluginDirectory::WaitOnScriptResult(const CStdString &scriptPath, const CS
+       progressBar->Progress();
+       if (progressBar->IsCanceled())
+       { // user has cancelled our process - cancel our process
+-        if (!m_cancelled)
++        m_cancelled = true;
++      }
++    }
++        if (!cancelled && m_cancelled)
+         {
+-          m_cancelled = true;
++          cancelled = true;
+           startTime = XbmcThreads::SystemClockMillis();
+         }
+-        if (m_cancelled && XbmcThreads::SystemClockMillis() - startTime > timeToKillScript)
++        if (cancelled && XbmcThreads::SystemClockMillis() - startTime > timeToKillScript)
+         { // cancel our script
+ #ifdef HAS_PYTHON
+           int id = g_pythonParser.getScriptId(scriptPath.c_str());
+@@ -547,14 +551,13 @@ bool CPluginDirectory::WaitOnScriptResult(const CStdString &scriptPath, const CS
+             break;
+           }
+ #endif
+-        }
+-      }
+     }
+   }
++
+   if (progressBar)
+     CApplicationMessenger::Get().Close(progressBar, false, false);
+ 
+-  return !m_cancelled && m_success;
++  return !cancelled && m_success;
+ }
+ 
+ void CPluginDirectory::SetResolvedUrl(int handle, bool success, const CFileItem *resultItem)
+@@ -626,3 +629,8 @@ void CPluginDirectory::SetProperty(int handle, const CStdString &strProperty, co
+   CPluginDirectory *dir = globalHandles[handle];
+   dir->m_listItems->SetProperty(strProperty, strValue);
+ }
++
++void CPluginDirectory::CancelDirectory()
++{
++  m_cancelled = true;
++}
+diff --git a/xbmc/filesystem/PluginDirectory.h b/xbmc/filesystem/PluginDirectory.h
+index acc6cdb..c1c1cac 100644
+--- a/xbmc/filesystem/PluginDirectory.h
++++ b/xbmc/filesystem/PluginDirectory.h
+@@ -47,6 +47,7 @@ class CPluginDirectory : public IDirectory
+   virtual bool GetDirectory(const CStdString& strPath, CFileItemList& items);
+   virtual bool IsAllowed(const CStdString &strFile) const { return true; };
+   virtual bool Exists(const char* strPath) { return true; }
++  virtual void CancelDirectory();
+   static bool RunScriptWithParams(const CStdString& strPath);
+   static bool GetPluginResult(const CStdString& strPath, CFileItem &resultItem);
+ 
+-- 
+1.7.10
+
+
+From 75fd3a5ed35363dcbcc954b92e02498c0be89ed5 Mon Sep 17 00:00:00 2001
+From: Jonathan Marshall <jmarshall@never.you.mind>
+Date: Sun, 12 Aug 2012 21:29:53 +1200
+Subject: [PATCH 3/7] cosmetics: indenting
+
+---
+ xbmc/filesystem/PluginDirectory.cpp |   28 ++++++++++++++--------------
+ 1 file changed, 14 insertions(+), 14 deletions(-)
+
+diff --git a/xbmc/filesystem/PluginDirectory.cpp b/xbmc/filesystem/PluginDirectory.cpp
+index 76348f3..57135f3 100644
+--- a/xbmc/filesystem/PluginDirectory.cpp
++++ b/xbmc/filesystem/PluginDirectory.cpp
+@@ -535,21 +535,21 @@ bool CPluginDirectory::WaitOnScriptResult(const CStdString &scriptPath, const CS
+         m_cancelled = true;
+       }
+     }
+-        if (!cancelled && m_cancelled)
+-        {
+-          cancelled = true;
+-          startTime = XbmcThreads::SystemClockMillis();
+-        }
+-        if (cancelled && XbmcThreads::SystemClockMillis() - startTime > timeToKillScript)
+-        { // cancel our script
++    if (!cancelled && m_cancelled)
++    {
++      cancelled = true;
++      startTime = XbmcThreads::SystemClockMillis();
++    }
++    if (cancelled && XbmcThreads::SystemClockMillis() - startTime > timeToKillScript)
++    { // cancel our script
+ #ifdef HAS_PYTHON
+-          int id = g_pythonParser.getScriptId(scriptPath.c_str());
+-          if (id != -1 && g_pythonParser.isRunning(id))
+-          {
+-            CLog::Log(LOGDEBUG, "%s- cancelling plugin %s", __FUNCTION__, scriptName.c_str());
+-            g_pythonParser.stopScript(id);
+-            break;
+-          }
++      int id = g_pythonParser.getScriptId(scriptPath.c_str());
++      if (id != -1 && g_pythonParser.isRunning(id))
++      {
++        CLog::Log(LOGDEBUG, "%s- cancelling plugin %s", __FUNCTION__, scriptName.c_str());
++        g_pythonParser.stopScript(id);
++        break;
++      }
+ #endif
+     }
+   }
+-- 
+1.7.10
+
+
+From 037fcd50131dfe42081c29b4b74a902ccc44bf2b Mon Sep 17 00:00:00 2001
+From: Jonathan Marshall <jmarshall@never.you.mind>
+Date: Sun, 26 Aug 2012 16:47:36 +1200
+Subject: [PATCH 4/7] adds GetProgress to IDirectory, and implement for
+ CPluginDirectory
+
+---
+ xbmc/filesystem/IDirectory.h        |    6 ++++++
+ xbmc/filesystem/PluginDirectory.cpp |    7 +++++++
+ xbmc/filesystem/PluginDirectory.h   |    1 +
+ 3 files changed, 14 insertions(+)
+
+diff --git a/xbmc/filesystem/IDirectory.h b/xbmc/filesystem/IDirectory.h
+index 6ebd816..4891c42 100644
+--- a/xbmc/filesystem/IDirectory.h
++++ b/xbmc/filesystem/IDirectory.h
+@@ -70,6 +70,12 @@ class IDirectory
+    */
+   virtual bool GetDirectory(const CStdString& strPath, CFileItemList &items) = 0;
+   /*!
++   \brief Retrieve the progress of the current directory fetch (if possible).
++   \return the progress as a float in the range 0..100.
++   \sa GetDirectory, CancelDirectory
++   */
++  virtual float GetProgress() const { return 0.0f; };
++  /*!
+    \brief Cancel the current directory fetch (if possible).
+    \sa GetDirectory
+    */
+diff --git a/xbmc/filesystem/PluginDirectory.cpp b/xbmc/filesystem/PluginDirectory.cpp
+index 57135f3..e54d28d 100644
+--- a/xbmc/filesystem/PluginDirectory.cpp
++++ b/xbmc/filesystem/PluginDirectory.cpp
+@@ -634,3 +634,10 @@ void CPluginDirectory::CancelDirectory()
+ {
+   m_cancelled = true;
+ }
++
++float CPluginDirectory::GetProgress() const
++{
++  if (m_totalItems > 0)
++    return (m_listItems->Size() * 100.0f) / m_totalItems;
++  return 0.0f;
++}
+diff --git a/xbmc/filesystem/PluginDirectory.h b/xbmc/filesystem/PluginDirectory.h
+index c1c1cac..fd44d5d 100644
+--- a/xbmc/filesystem/PluginDirectory.h
++++ b/xbmc/filesystem/PluginDirectory.h
+@@ -47,6 +47,7 @@ class CPluginDirectory : public IDirectory
+   virtual bool GetDirectory(const CStdString& strPath, CFileItemList& items);
+   virtual bool IsAllowed(const CStdString &strFile) const { return true; };
+   virtual bool Exists(const char* strPath) { return true; }
++  virtual float GetProgress() const;
+   virtual void CancelDirectory();
+   static bool RunScriptWithParams(const CStdString& strPath);
+   static bool GetPluginResult(const CStdString& strPath, CFileItem &resultItem);
+-- 
+1.7.10
+
+
+From 00ef83ca32c78355aec34cba4000c935b1b45b5c Mon Sep 17 00:00:00 2001
+From: Jonathan Marshall <jmarshall@never.you.mind>
+Date: Sun, 26 Aug 2012 16:53:15 +1200
+Subject: [PATCH 5/7] adds progress dialog support (id 10) to the busy dialog,
+ and utilise in CDirectory::GetDirectory
+
+---
+ xbmc/dialogs/GUIDialogBusy.cpp |   20 ++++++++++++++++++++
+ xbmc/dialogs/GUIDialogBusy.h   |    5 +++++
+ xbmc/filesystem/Directory.cpp  |    5 +++++
+ 3 files changed, 30 insertions(+)
+
+diff --git a/xbmc/dialogs/GUIDialogBusy.cpp b/xbmc/dialogs/GUIDialogBusy.cpp
+index 3d2b143..4347d2b 100644
+--- a/xbmc/dialogs/GUIDialogBusy.cpp
++++ b/xbmc/dialogs/GUIDialogBusy.cpp
+@@ -20,13 +20,17 @@
+  */
+ 
+ #include "GUIDialogBusy.h"
++#include "guilib/GUIProgressControl.h"
+ #include "guilib/GUIWindowManager.h"
+ 
++#define PROGRESS_CONTROL 10
++
+ CGUIDialogBusy::CGUIDialogBusy(void)
+   : CGUIDialog(WINDOW_DIALOG_BUSY, "DialogBusy.xml"), m_bLastVisible(false)
+ {
+   m_loadOnDemand = false;
+   m_bModal = true;
++  m_progress = 0;
+ }
+ 
+ CGUIDialogBusy::~CGUIDialogBusy(void)
+@@ -40,6 +44,7 @@ void CGUIDialogBusy::Show_Internal()
+   m_bModal = true;
+   m_bLastVisible = true;
+   m_closing = false;
++  m_progress = 0;
+   g_windowManager.RouteToWindow(this);
+ 
+   // active this window...
+@@ -53,6 +58,16 @@ void CGUIDialogBusy::DoProcess(unsigned int currentTime, CDirtyRegionList &dirty
+   if(!visible && m_bLastVisible)
+     dirtyregions.push_back(m_renderRegion);
+   m_bLastVisible = visible;
++
++  // update the progress control if available
++  const CGUIControl *control = GetControl(PROGRESS_CONTROL);
++  if (control && control->GetControlType() == CGUIControl::GUICONTROL_PROGRESS)
++  {
++    CGUIProgressControl *progress = (CGUIProgressControl *)control;
++    progress->SetPercentage(m_progress);
++    progress->SetVisible(m_progress > 0);
++  }
++
+   CGUIDialog::DoProcess(currentTime, dirtyregions);
+ }
+ 
+@@ -68,3 +83,8 @@ bool CGUIDialogBusy::OnBack(int actionID)
+   m_bCanceled = true;
+   return true;
+ }
++
++void CGUIDialogBusy::SetProgress(float percent)
++{
++  m_progress = percent;
++}
+diff --git a/xbmc/dialogs/GUIDialogBusy.h b/xbmc/dialogs/GUIDialogBusy.h
+index c4d3b8f..5aedd7f 100644
+--- a/xbmc/dialogs/GUIDialogBusy.h
++++ b/xbmc/dialogs/GUIDialogBusy.h
+@@ -32,10 +32,15 @@ class CGUIDialogBusy: public CGUIDialog
+   virtual bool OnBack(int actionID);
+   virtual void DoProcess(unsigned int currentTime, CDirtyRegionList &dirtyregions);
+   virtual void Render();
++  /*! \brief set the current progress of the busy operation
++   \param progress a percentage of progress
++   */
++  void SetProgress(float progress);
+ 
+   bool IsCanceled() { return m_bCanceled; }
+ protected:
+   virtual void Show_Internal(); // modeless'ish
+   bool m_bCanceled;
+   bool m_bLastVisible;
++  float m_progress; ///< current progress
+ };
+diff --git a/xbmc/filesystem/Directory.cpp b/xbmc/filesystem/Directory.cpp
+index 470a233..8f74a74 100644
+--- a/xbmc/filesystem/Directory.cpp
++++ b/xbmc/filesystem/Directory.cpp
+@@ -162,6 +162,11 @@ bool CDirectory::GetDirectory(const CStdString& strPath, CFileItemList &items, c
+             {
+               CSingleLock lock(g_graphicsContext);
+ 
++              // update progress
++              float progress = pDirectory->GetProgress();
++              if (progress > 0)
++                dialog->SetProgress(progress);
++
+               if(dialog->IsCanceled())
+               {
+                 cancel = true;
+-- 
+1.7.10
+
+
+From 6aad20c43e039d45e12a241de0685709469a50c5 Mon Sep 17 00:00:00 2001
+From: Jonathan Marshall <jmarshall@never.you.mind>
+Date: Sun, 26 Aug 2012 16:54:31 +1200
+Subject: [PATCH 6/7] cleanup - no need for updating labels on the progress
+ during plugin directory fetch, as it is using busy
+ dialog now
+
+---
+ xbmc/filesystem/PluginDirectory.cpp |   13 -------------
+ 1 file changed, 13 deletions(-)
+
+diff --git a/xbmc/filesystem/PluginDirectory.cpp b/xbmc/filesystem/PluginDirectory.cpp
+index e54d28d..f4581c3 100644
+--- a/xbmc/filesystem/PluginDirectory.cpp
++++ b/xbmc/filesystem/PluginDirectory.cpp
+@@ -516,19 +516,6 @@ bool CPluginDirectory::WaitOnScriptResult(const CStdString &scriptPath, const CS
+ 
+     if (progressBar)
+     { // update the progress bar and check for user cancel
+-      if (retrievingDir)
+-      {
+-        CStdString label;
+-        if (m_totalItems > 0)
+-        {
+-          label.Format(g_localizeStrings.Get(1042).c_str(), m_listItems->Size(), m_totalItems);
+-          progressBar->SetPercentage((int)((m_listItems->Size() * 100 ) / m_totalItems));
+-          progressBar->ShowProgressBar(true);
+-        }
+-        else
+-          label.Format(g_localizeStrings.Get(1041).c_str(), m_listItems->Size());
+-        progressBar->SetLine(2, label);
+-      }
+       progressBar->Progress();
+       if (progressBar->IsCanceled())
+       { // user has cancelled our process - cancel our process
+-- 
+1.7.10
+
+
+From 7285c2e2eb25ad3ead8f2f109d53b559b53d9023 Mon Sep 17 00:00:00 2001
+From: Jonathan Marshall <jmarshall@never.you.mind>
+Date: Sun, 26 Aug 2012 16:55:04 +1200
+Subject: [PATCH 7/7] [confluence] adds progress control to busy dialog
+
+---
+ addons/skin.confluence/720p/DialogBusy.xml |   10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/addons/skin.confluence/720p/DialogBusy.xml b/addons/skin.confluence/720p/DialogBusy.xml
+index 7e9df8d..fd053fa 100644
+--- a/addons/skin.confluence/720p/DialogBusy.xml
++++ b/addons/skin.confluence/720p/DialogBusy.xml
+@@ -39,6 +39,14 @@
+ 				<label>$LOCALIZE[31004]</label>
+ 				<font>font12</font>
+ 			</control>
++			<control type="progress" id="10">
++				<description>Progressbar</description>
++				<posx>20</posx>
++				<posy>65</posy>
++				<width>160</width>
++				<height>10</height>
++				<!-- <info>System.Progressbar</info> -->
++			</control>
+ 		</control>
+ 	</controls>
+-</window>
+\ No newline at end of file
++</window>
+-- 
+1.7.10
+

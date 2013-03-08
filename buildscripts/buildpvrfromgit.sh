@@ -63,23 +63,22 @@ function buildPackage {
     [[ -z $TAGREV ]] && TAGREV=0
     archiveRepo
     cd $REPO_DIR/debian
-    #sed -i "s/git.*-0/${DEST#xbmc-pvr-addons${PVRAPI}-*~}-${TAGREV}/g" changelog.in
-    sed -i "s/#PACKAGEVERSION#/${DEST#xbmc-pvr-addons${PVRAPI}-}/g" changelog.in
+    sed -i "s/#PACKAGEVERSION#/${DEST#xbmc-pvr-addons-}/g" changelog.in
     [[ $(createDebs) -eq 0 ]] && uploadpkgs #&& saveTagRev
 }
 
 function archiveRepo {
     cd $REPO_DIR || exit 1
-    if [[ -f xbmc/xbmc_pvr_types.h ]] 
-    then
-        PVRAPI=$(awk '/XBMC_PVR_API_VERSION/ {gsub("\"",""); print $3 }' xbmc/xbmc_pvr_types.h)
-        echo "detected PVR API: ${PVRAPI}"
-    else
-        echo "could not determine PVR API version" >> $LOG 2>&1 
-        exit 4
-    fi
+    #if [[ -f xbmc/xbmc_pvr_types.h ]] 
+    #then
+    #    PVRAPI=$(awk '/XBMC_PVR_API_VERSION/ {gsub("\"",""); print $3 }' xbmc/xbmc_pvr_types.h)
+    #    echo "detected PVR API: ${PVRAPI}"
+    #else
+    #    echo "could not determine PVR API version" >> $LOG 2>&1 
+    #    exit 4
+    #fi
     [[ -d debian ]] && rm -rf debian
-    DEST="xbmc-pvr-addons${PVRAPI}-1.0.0~git$(date '+%Y%m%d.%H%M')-${TAG}"
+    DEST="xbmc-pvr-addons-1.0.0~git$(date '+%Y%m%d.%H%M')-${TAG}"
     cp -r $DEBIAN . #TODO better debian dir handling
     mv $(basename $DEBIAN) debian 2>/dev/null
     echo $TAGREV > debian/versiontag
@@ -90,17 +89,17 @@ function archiveRepo {
     echo "Output Archive: ${DEST}.tar.gz" >> $LOG
 }
 
-function updatePvrAddons {
-    cd $PVRADDONS_REPO_DIR || exit 1
-    echo "updating PVR Addons in $PVRADDONS_REPO_DIR" >> $LOG
-    echo $PWD
-    git clean -Xfd #>> $LOG
-    git fetch $PVR_REPO >> $LOG 2>&1
-    git reset --hard $PVR_REPO/$PVR_BRANCH >> $LOG 2>&1
-    cd ..
-    mkdir $REPO_DIR/pvr-addons
-    cp -r $PVRADDONS_REPO_DIR/* $REPO_DIR/pvr-addons
-}
+#function updatePvrAddons {
+#    cd $PVRADDONS_REPO_DIR || exit 1
+#    echo "updating PVR Addons in $PVRADDONS_REPO_DIR" >> $LOG
+#    echo $PWD
+#    git clean -Xfd #>> $LOG
+#    git fetch $PVR_REPO >> $LOG 2>&1
+#    git reset --hard $PVR_REPO/$PVR_BRANCH >> $LOG 2>&1
+#    cd ..
+#    mkdir $REPO_DIR/pvr-addons
+#    cp -r $PVRADDONS_REPO_DIR/* $REPO_DIR/pvr-addons
+#}
 
 function createDebs {
     cd $REPO_DIR || exit 1
@@ -110,7 +109,7 @@ function createDebs {
         debian/prepare-build.sh $i >> $LOG
         #sed "s/dist/$i/g" debian/changelog.tmp > debian/changelog
 	#sed -i "s/0dist/${TAGREV}${i}/g" debian/*.changelog 2>/dev/null
-        debuild $BUILDOPT -S -k"wsnipex <wsnipex@a1.net>" >> $LOG 2>&1
+        debuild $BUILDOPT -I -S -k"wsnipex <wsnipex@a1.net>" >> $LOG 2>&1
         #BUILDOPT="-sd"
     done
     echo $?

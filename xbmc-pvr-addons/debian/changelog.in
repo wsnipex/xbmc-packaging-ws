@@ -1,13 +1,4 @@
-xbmc-pvr-addons#APIVERSION# (#PACKAGEVERSION#-0~#DIST#) #DIST#; urgency=high
-
-
-
-
-
-
-
-
-
+xbmc-pvr-addons (#PACKAGEVERSION#-0~#DIST#) #DIST#; urgency=high
 
   * Initial release 
 

@@ -1,4 +1,4 @@
-Source: xbmc-pvr-addons#APIVERSION#
+Source: xbmc-pvr-addons
 Section: video
 Priority: extra
 Maintainer: wsnipex <wsnipex@a1.net>
@@ -8,7 +8,7 @@ Homepage: http://xbmc.org
 Vcs-Git: git://github.com/opdenkamp/xbmc-pvr-addons.git
 Vcs-Browser: https://github.com/opdenkamp/xbmc-pvr-addons/tree/frodo
 
-Package: xbmc-pvr-mythtv-cmyth#APIVERSION#
+Package: xbmc-pvr-mythtv-cmyth
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, libmysqlclient19 | libmysqlclient18 | libmysqlclient17 | libmysqlclient16 | libmysqlclient15 | libmysqlclient14
 Description: XBMC PVR Addon MythTv - Cmyth - PVR API:#APIVERSION#
@@ -16,7 +16,7 @@ Description: XBMC PVR Addon MythTv - Cmyth - PVR API:#APIVERSION#
  the award winning free and open source software media-player and entertainment hub
  for all your digital media
 
-Package: xbmc-pvr-vuplus#APIVERSION#
+Package: xbmc-pvr-vuplus
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: XBMC PVR Addon Vuplus - PVR API:#APIVERSION#
@@ -24,7 +24,7 @@ Description: XBMC PVR Addon Vuplus - PVR API:#APIVERSION#
  the award winning free and open source software media-player and entertainment hub
  for all your digital media
 
-Package: xbmc-pvr-vdr-vnsi#APIVERSION#
+Package: xbmc-pvr-vdr-vnsi
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: XBMC PVR Addon VDR Vnsi - PVR API:#APIVERSION#
@@ -32,13 +32,13 @@ Description: XBMC PVR Addon VDR Vnsi - PVR API:#APIVERSION#
  the award winning free and open source software media-player and entertainment hub
  for all your digital media
 
-Package: vdr-plugin-vnsiserver#APIVERSION#
+Package: vdr-plugin-vnsiserver
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, ${vdr:Depends}
 Description: VDR-Network-Streaming-Interface - PVR API:#APIVERSION#
  VDR-Network-Streaming-Interface
 
-Package: xbmc-pvr-njoy#APIVERSION#
+Package: xbmc-pvr-njoy
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: XBMC PVR Addon Njoy - PVR API:#APIVERSION#
@@ -46,7 +46,7 @@ Description: XBMC PVR Addon Njoy - PVR API:#APIVERSION#
  the award winning free and open source software media-player and entertainment hub
  for all your digital media
 
-Package: xbmc-pvr-nextpvr#APIVERSION#
+Package: xbmc-pvr-nextpvr
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: XBMC PVR Addon NextPvr - PVR API:#APIVERSION#
@@ -54,7 +54,7 @@ Description: XBMC PVR Addon NextPvr - PVR API:#APIVERSION#
  the award winning free and open source software media-player and entertainment hub
  for all your digital media
 
-Package: xbmc-pvr-mediaportal-tvserver#APIVERSION#
+Package: xbmc-pvr-mediaportal-tvserver
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: XBMC PVR Addon Mediaportal Tvserver - PVR API:#APIVERSION#
@@ -62,7 +62,7 @@ Description: XBMC PVR Addon Mediaportal Tvserver - PVR API:#APIVERSION#
  the award winning free and open source software media-player and entertainment hub
  for all your digital media
 
-Package: xbmc-pvr-tvheadend-hts#APIVERSION#
+Package: xbmc-pvr-tvheadend-hts
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: XBMC PVR Addon TvHeadend Hts - PVR API:#APIVERSION#
@@ -70,7 +70,7 @@ Description: XBMC PVR Addon TvHeadend Hts - PVR API:#APIVERSION#
  the award winning free and open source software media-player and entertainment hub
  for all your digital media
 
-Package: xbmc-pvr-dvbviewer#APIVERSION#
+Package: xbmc-pvr-dvbviewer
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: XBMC PVR Addon Dvbviewer - PVR API:#APIVERSION#
@@ -78,7 +78,7 @@ Description: XBMC PVR Addon Dvbviewer - PVR API:#APIVERSION#
  the award winning free and open source software media-player and entertainment hub
  for all your digital media
 
-Package: xbmc-pvr-argustv#APIVERSION#
+Package: xbmc-pvr-argustv
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: XBMC PVR Addon Argustv - PVR API:#APIVERSION#
@@ -86,7 +86,7 @@ Description: XBMC PVR Addon Argustv - PVR API:#APIVERSION#
  the award winning free and open source software media-player and entertainment hub
  for all your digital media
 
-Package: xbmc-pvr-demo#APIVERSION#
+Package: xbmc-pvr-demo
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: XBMC PVR Demo Addon - PVR API:#APIVERSION# 

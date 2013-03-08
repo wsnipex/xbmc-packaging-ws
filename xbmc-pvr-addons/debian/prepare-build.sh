@@ -34,16 +34,16 @@ sed "s/#APIVERSION#/$PVRAPI/g" control.in > control
 # Define upstream addon name to package name mapping
 ###
 declare -A PACKAGES=(
-	["pvr.hts"]="xbmc-pvr-tvheadend-hts${PVRAPI}"
-	["pvr.vuplus"]="xbmc-pvr-vuplus${PVRAPI}"
-	["pvr.mediaportal.tvserver"]="xbmc-pvr-mediaportal-tvserver${PVRAPI}"
-	["pvr.dvbviewer"]="xbmc-pvr-dvbviewer${PVRAPI}"
-	["pvr.argustv"]="xbmc-pvr-argustv${PVRAPI}"
-	["pvr.mythtv.cmyth"]="xbmc-pvr-mythtv-cmyth${PVRAPI}"
-	["pvr.vdr.vnsi"]="xbmc-pvr-vdr-vnsi${PVRAPI}"
-	["pvr.nextpvr"]="xbmc-pvr-nextpvr${PVRAPI}"
-	["pvr.demo"]="xbmc-pvr-demo${PVRAPI}"
-	["pvr.njoy"]="xbmc-pvr-njoy${PVRAPI}"
+	["pvr.hts"]="xbmc-pvr-tvheadend-hts"
+	["pvr.vuplus"]="xbmc-pvr-vuplus"
+	["pvr.mediaportal.tvserver"]="xbmc-pvr-mediaportal-tvserver"
+	["pvr.dvbviewer"]="xbmc-pvr-dvbviewer"
+	["pvr.argustv"]="xbmc-pvr-argustv"
+	["pvr.mythtv.cmyth"]="xbmc-pvr-mythtv-cmyth"
+	["pvr.vdr.vnsi"]="xbmc-pvr-vdr-vnsi"
+	["pvr.nextpvr"]="xbmc-pvr-nextpvr"
+	["pvr.demo"]="xbmc-pvr-demo"
+	["pvr.njoy"]="xbmc-pvr-njoy"
 )
 
 ###
@@ -63,9 +63,9 @@ do
 	echo "${version}" > ${PACKAGES["$package"]}.version
 	if [[ -f $changelog ]]
 	then
-		dch -c ${PACKAGES["$package"]}.changelog --create --empty --package xbmc-pvr-addons${PVRAPI} -v "${version}" --distribution ${dist} --force-distribution 2>/dev/null $(cat $changelog | tail -80)
+		dch -c ${PACKAGES["$package"]}.changelog --create --empty --package xbmc-pvr-addons -v "${version}" --distribution ${dist} --force-distribution 2>/dev/null $(cat $changelog | tail -80)
 	else
-		dch -c ${PACKAGES["$package"]}.changelog --create --empty --package xbmc-pvr-addons${PVRAPI} -v "${version}" --distribution ${dist} --force-distribution 2>/dev/null "no upstream changelog available"
+		dch -c ${PACKAGES["$package"]}.changelog --create --empty --package xbmc-pvr-addons -v "${version}" --distribution ${dist} --force-distribution 2>/dev/null "no upstream changelog available"
 	fi
 done
 
@@ -73,11 +73,11 @@ done
 # special handling for vdr-plugin-vnsiserver
 ###
 echo "creating changelog for: vdr-plugin-vnsiserver"
-package="vdr-plugin-vnsiserver${PVRAPI}"
+package="vdr-plugin-vnsiserver"
 version="1:"$(awk -F'=' '/\*VERSION/ {gsub("\"",""); gsub(" ",""); gsub(";",""); print $2}' ../addons/pvr.vdr.vnsi/vdr-plugin-vnsiserver/vnsi.h)"-${tag}${dist}"
 echo "${version}" > ${package}.version
 
 [[ -f "${package}.changelog" ]] && mv ${package}.changelog ${package}.changelog.old
-dch -c ${package}.changelog --create --empty --package xbmc-pvr-addons${PVRAPI} -v"${version}" --distribution ${dist} --force-distribution 2>/dev/null "no upstream changelog available"
+dch -c ${package}.changelog --create --empty --package xbmc-pvr-addons -v"${version}" --distribution ${dist} --force-distribution 2>/dev/null "no upstream changelog available"
 
 exit 0

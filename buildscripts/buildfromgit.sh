@@ -67,10 +67,10 @@ function buildPackage {
     local newrev=$(getGitRev $BUILD_REPO)
     if [[ $(compareRevs $newrev $UPSTREAMREV) == "False" ]]
     then
-	if [[ -n $COMMIT ]]
-	then
+        if [[ -n $COMMIT ]]
+        then
             UPSTREAMREV=$newrev	
-	else
+        else
             echo "local repo update error" >> $LOG
             exit 2
         fi

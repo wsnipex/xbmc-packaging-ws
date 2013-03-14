@@ -16,6 +16,7 @@
 #BUILD_REPO="master"
 #UPSTREAM_REPO="xbmc-upstream"
 #UPSTREAM_BRANCH="master"
+#COMMIT="8d2e0fe0d3cd5592765910de545ff471c90cea8c"
 #PVRADDONS_REPO_DIR="/data/packages/xbmc-mainline/xbmc-pvr-addons"
 #PVR_REPO="pvr-addons-upstream"
 #PVR_BRANCH="master"
@@ -34,6 +35,7 @@ function updateRepo {
     git fetch $UPSTREAM_REPO >/dev/null 2>&1 || exit 2
     createChangelog
     git reset --hard $UPSTREAM_REPO/$UPSTREAM_BRANCH >> $LOG || exit 2
+    [[ -n $COMMIT ]] && git reset --hard $COMMIT || exit 2
     git clean -Xfd
     [[ -n $PATCHES ]] && addPatchesFromFile
 }
@@ -50,8 +52,6 @@ function addPatchesFromFile {
 function getGitRev {
     local branch=$1
     cd $REPO_DIR || exit 1
-    #REV=$(git log --no-merges -1 --pretty=format:"%h %an %B" $branch)
-    #REV=$(git log --no-merges -1 --pretty=format:"%h" $branch)
     REV=$(git log -1 --pretty=format:"%h" $branch)
     echo $REV # return
 }
@@ -67,8 +67,13 @@ function buildPackage {
     local newrev=$(getGitRev $BUILD_REPO)
     if [[ $(compareRevs $newrev $UPSTREAMREV) == "False" ]]
     then
-        echo "local repo update error" >> $LOG
-        exit 2
+	if [[ -n $COMMIT ]]
+	then
+            UPSTREAMREV=$newrev	
+	else
+            echo "local repo update error" >> $LOG
+            exit 2
+        fi
     fi
     echo "building new package with git rev $UPSTREAMREV" >> $LOG
     [[ -z $TAG ]] && TAG=$UPSTREAMREV

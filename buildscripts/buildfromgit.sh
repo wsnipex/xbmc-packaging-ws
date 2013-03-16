@@ -30,12 +30,12 @@
 
 function updateRepo {
     cd $REPO_DIR || exit 1
-    git stash
-    git checkout $BUILD_REPO >/dev/null 2>&1 || exit 2
-    git fetch $UPSTREAM_REPO >/dev/null 2>&1 || exit 2
+    git stash >/dev/null 2>&1
+    git checkout $BUILD_REPO >/dev/null 2>&1 || exit 4
+    git fetch $UPSTREAM_REPO >/dev/null 2>&1 || exit 5
     createChangelog
-    git reset --hard $UPSTREAM_REPO/$UPSTREAM_BRANCH >> $LOG || exit 2
-    [[ -n $COMMIT ]] && git reset --hard $COMMIT || exit 2
+    git reset --hard $UPSTREAM_REPO/$UPSTREAM_BRANCH >> $LOG || exit 6
+    [[ -n $COMMIT ]] && ( echo "using $COMMIT" >> $LOG && git reset --hard $COMMIT >> $LOG || exit 7)
     git clean -Xfd
     [[ -n $PATCHES ]] && addPatchesFromFile
 }

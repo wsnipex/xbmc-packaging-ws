@@ -44,6 +44,7 @@ declare -A PACKAGES=(
 	["pvr.nextpvr"]="xbmc-pvr-nextpvr"
 	["pvr.demo"]="xbmc-pvr-demo"
 	["pvr.njoy"]="xbmc-pvr-njoy"
+        ["pvr.iptvsimple"]="xbmc-pvr-iptvsimple"
 )
 
 ###

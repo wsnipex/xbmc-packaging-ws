@@ -11,10 +11,7 @@ DEB_HOST_ARCH ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 # optimizations.
 # NOTE: DEB_BUILD_OPTIONS must have 'nostrip' otherwise debugging symbols will
 # be stripped from binaries.
-XBMC_RELEASE ?= yes
-ifneq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
-XBMC_RELEASE ?= no
-endif
+XBMC_RELEASE = yes
 
 # Whether we're building for release or not
 ifeq (yes,$(XBMC_RELEASE))
@@ -23,26 +20,11 @@ else
   DEBUG_OPTIONS = --enable-debug --disable-optimizations
 endif
 
-# Ubuntu or Debian specific options
-ifeq (Ubuntu,$(shell lsb_release -is))
-  DISTRO_SPECIFIC_OPTIONS =
-# Enable external libraries for all architectures except i386 and amd64
-ifeq (,$(filter i386 amd64,$(DEB_HOST_ARCH)))
-  DISTRO_SPECIFIC_OPTIONS = --enable-external-libraries
-endif
-else
-  DISTRO_SPECIFIC_OPTIONS = --enable-external-libraries \
-    --disable-dvdcss \
-    --disable-non-free
-endif
-
 # Enable gles for armel
 ifeq (,$(filter armel,$(DEB_HOST_ARCH)))
 GL_CONFIG_OPTIONS = --enable-gl --disable-gles
-OPENMAX_OPTIONS = --disable-openmax
 else
 GL_CONFIG_OPTIONS = --disable-gl --enable-gles
-OPENMAX_OPTIONS = --enable-openmax
 endif
 
 # Various environment variables to set
@@ -56,21 +38,19 @@ XBMC_CONFIG_OPTIONS ?= --host=$(DEB_HOST_GNU_TYPE) \
   --prefix=/usr --docdir=/usr/share/doc/xbmc \
   $(DEBUG_OPTIONS) \
   $(GL_CONFIG_OPTIONS) \
-  --enable-xvba \
   --enable-vdpau \
   --enable-vaapi \
-  --disable-crystalhd \
+  --enable-crystalhd \
   --disable-vdadecoder \
   --disable-vtbdecoder \
-  $(OPENMAX_OPTIONS) \
+  --disable-openmax \
   --disable-tegra \
   --disable-profiling \
   --enable-joystick \
   --enable-xrandr \
   --disable-ccache \
-  --disable-pulse \
+  --enable-pulse \
   --enable-rtmp \
-  --enable-ffmpeg-libvorbis \
   --disable-mid \
   --enable-hal \
   --enable-avahi \
@@ -83,7 +63,7 @@ XBMC_CONFIG_OPTIONS ?= --host=$(DEB_HOST_GNU_TYPE) \
   --enable-afpclient \
   --enable-airtunes \
   --enable-libbluray \
-  --enable-pvraddons-with-dependencies \
+  --with-ffmpeg=force \
   $(DISTRO_SPECIFIC_OPTIONS) \
   $(XBMC_CONFIG_EXTRA_OPTIONS) \
   $(ENV_OPTIONS)
@@ -91,11 +71,7 @@ XBMC_CONFIG_OPTIONS ?= --host=$(DEB_HOST_GNU_TYPE) \
 # Input files used for generating other files
 INPUT_FILES = debian/control.in
 
-# Use --parallel option only if debhelper supports it
-#DH_PARALLEL_OPT=$(shell dh_testdir --parallel 2>/dev/null && echo "--parallel")
-
 %:
-#	dh $@ $(DH_PARALLEL_OPT)
 	dh $@ --parallel
 #
 # Target for generating control files
@@ -104,7 +80,6 @@ INPUT_FILES = debian/control.in
 	@echo "Generating $$(echo $@ | sed 's/\.in$$//') from $@"
 	perl -p \
 	-e 's{#BUILD_DEPENDS#}{qx(sh debian/var_info BUILD_DEPENDS)}ge;' \
-	-e 's{#XBMC_LIVE_DEPENDS#}{qx(sh debian/var_info XBMC_LIVE_DEPENDS)}ge;' \
 	< $@ > $$(echo $@ | sed 's/\.in$$//')
 
 override_dh_clean:
@@ -118,11 +93,9 @@ override_dh_auto_configure:
 	./configure $(XBMC_CONFIG_OPTIONS)
 
 override_dh_auto_install:
-	#$(MAKE) -C lib/addons/script.module.pil
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
 	$(MAKE) eventclients DESTDIR=$(CURDIR)/debian/tmp \
 		WII_EXTRA_OPTS=-DCWIID_OLD
-	cp collectsysteminfo.sh debian/tmp
 
 override_dh_install:
 	dh_install --sourcedir=$(CURDIR)/debian/tmp -XLICENCE \
@@ -130,7 +103,6 @@ override_dh_install:
 		-XDejaVuSans.ttf -XDejaVuSans-Bold.ttf
 	# Delete license file from package
 	rm -f debian/xbmc/usr/share/xbmc/addons/script.recentlyadded/LICENSE.txt
-
 
 override_dh_makeshlibs:
 	# We don't install shared libraries in standard locations so don't run

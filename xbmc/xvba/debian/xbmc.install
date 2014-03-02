@@ -5,4 +5,3 @@ usr/share/applications
 usr/share/xbmc/addons/skin.confluence
 usr/bin/xbmc-standalone
 usr/share/xsessions
-collectsysteminfo.sh usr/bin

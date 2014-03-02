@@ -38,6 +38,11 @@ function updateRepo {
     [[ -n $COMMIT ]] && ( echo "using $COMMIT" >> $LOG && git reset --hard $COMMIT >> $LOG || exit 7)
     git clean -Xfd
     [[ -n $PATCHES ]] && addPatchesFromFile
+    [[ $INCLUDE_FFMPEG != "False" ]] && addFFmpeg
+}
+
+function addFFmpeg {
+    tools/depends/target/ffmpeg/autobuild.sh -d
 }
 
 function addPatchesFromFile {

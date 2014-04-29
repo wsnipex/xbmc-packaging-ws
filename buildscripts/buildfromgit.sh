@@ -35,6 +35,7 @@ function updateRepo {
     git fetch $UPSTREAM_REPO >/dev/null 2>&1 || exit 5
     createChangelog
     git reset --hard $UPSTREAM_REPO/$UPSTREAM_BRANCH >> $LOG || exit 6
+    #[[ -n $COMMIT ]] && git reset --hard $COMMIT >> $LOG || exit 7
     [[ -n $COMMIT ]] && ( echo "using $COMMIT" >> $LOG && git reset --hard $COMMIT >> $LOG || exit 7)
     git clean -Xfd
     [[ -n $PATCHES ]] && addPatchesFromFile
@@ -186,7 +187,7 @@ function createChangelog {
         echo "#--------------------------#" >> $LOG
         echo "using config file $1 with contents:" >> $LOG
         cat $1 >> $LOG
-	[[ -z $RELEASEV ]] && RELEASEV=13.0 && echo "using default Release Version 13.0" >> $LOG
+	[[ -z $RELEASEV ]] && RELEASEV=14.0 && echo "using default Release Version 14.0" >> $LOG
     fi
 
     date >> $LOG

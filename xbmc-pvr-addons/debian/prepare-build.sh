@@ -73,12 +73,12 @@ done
 ###
 # special handling for vdr-plugin-vnsiserver
 ###
-echo "creating changelog for: vdr-plugin-vnsiserver"
-package="vdr-plugin-vnsiserver"
-version="1:"$(awk -F'=' '/\*VERSION/ {gsub("\"",""); gsub(" ",""); gsub(";",""); print $2}' ../addons/pvr.vdr.vnsi/vdr-plugin-vnsiserver/vnsi.h)"-${tag}${dist}"
-echo "${version}" > ${package}.version
+#echo "creating changelog for: vdr-plugin-vnsiserver"
+#package="vdr-plugin-vnsiserver"
+#version="1:"$(awk -F'=' '/\*VERSION/ {gsub("\"",""); gsub(" ",""); gsub(";",""); print $2}' ../addons/pvr.vdr.vnsi/vdr-plugin-vnsiserver/vnsi.h)"-${tag}${dist}"
+#echo "${version}" > ${package}.version
 
-[[ -f "${package}.changelog" ]] && mv ${package}.changelog ${package}.changelog.old
-dch -c ${package}.changelog --create --empty --package xbmc-pvr-addons -v"${version}" --distribution ${dist} --force-distribution 2>/dev/null "no upstream changelog available"
+#[[ -f "${package}.changelog" ]] && mv ${package}.changelog ${package}.changelog.old
+#dch -c ${package}.changelog --create --empty --package xbmc-pvr-addons -v"${version}" --distribution ${dist} --force-distribution 2>/dev/null "no upstream changelog available"
 
 exit 0

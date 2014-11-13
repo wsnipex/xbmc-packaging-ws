@@ -3,11 +3,12 @@
 
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
+SHELL=/bin/bash
+VDRVER = $(shell dpkg -s vdr-dev | awk '/Version/ { print $$2 }')
 
 # This has to be exported to make some magic below work.
 export DH_OPTIONS
 
-SHELL=/bin/bash
 
 %:
 	dh $@ --parallel
@@ -19,7 +20,7 @@ override_dh_clean:
 	-o -name "aclocal.m4" -o -name "configure" -o -name "depcomp" -o -name "install-sh"  \
 	-o -name "ltmain.sh" -o -name "missing" -o -name "libvdr-*.so.*" \
 	 \) -exec rm -f "{}" \;
-	$(MAKE) clean -C addons/pvr.vdr.vnsi/vdr-plugin-vnsiserver
+	#$(MAKE) clean -C addons/pvr.vdr.vnsi/vdr-plugin-vnsiserver
 
 override_dh_auto_configure:
 	./bootstrap
@@ -29,13 +30,23 @@ override_dh_gencontrol:
 	sh /usr/share/vdr-dev/dependencies.sh
 	dh_gencontrol
 
-override_dh_auto_build:
-	VDRDIR=/usr/include/vdr LIBDIR=$(CURDIR)/debian/vdr-plugin-vnsiserver/usr/lib/vdr/plugins LOCALEDIR=locale $(MAKE) compile -C addons/pvr.vdr.vnsi/vdr-plugin-vnsiserver
-	dh_auto_build
+#override_dh_auto_build:
+#ifeq ($(shell dpkg --compare-versions $(VDRVER) ge 2.0 ; echo $$?),0)
+#	@echo "DETECTED VDR v2: $(VERVER)"
+#	$(MAKE) -C addons/pvr.vdr.vnsi/vdr-plugin-vnsiserver
+#else
+#	@echo "OLD VDR: $(VDRVER)"
+#	VDRDIR=/usr/include/vdr LIBDIR=$(CURDIR)/debian/vdr-plugin-vnsiserver/usr/lib/vdr/plugins LOCALEDIR=locale $(MAKE) compile -C addons/pvr.vdr.vnsi/vdr-plugin-vnsiserver
+#endif
+#	dh_auto_build
 
-override_dh_auto_install:
-	VDRDIR=/usr/include/vdr LIBDIR=$(CURDIR)/debian/vdr-plugin-vnsiserver/usr/lib/vdr/plugins LOCALEDIR=locale $(MAKE) install-lib -C addons/pvr.vdr.vnsi/vdr-plugin-vnsiserver
-	dh_auto_install
+#override_dh_auto_install:
+#ifeq ($(shell dpkg --compare-versions $(VDRVER) ge 2.0 ; echo $$?),0)
+#	DESTDIR=$(CURDIR)/debian/vdr-plugin-vnsiserver $(MAKE) install -C addons/pvr.vdr.vnsi/vdr-plugin-vnsiserver
+#else 
+#	VDRDIR=/usr/include/vdr LIBDIR=$(CURDIR)/debian/vdr-plugin-vnsiserver/usr/lib/vdr/plugins LOCALEDIR=locale $(MAKE) install-lib -C addons/pvr.vdr.vnsi/vdr-plugin-vnsiserver
+#endif
+#	dh_auto_install
 
 override_dh_gencontrol:
 	for PACKAGE in $(shell cd debian && ls *.version | sed 's/.version//g'); do \

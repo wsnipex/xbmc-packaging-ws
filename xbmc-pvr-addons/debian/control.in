@@ -2,7 +2,7 @@ Source: xbmc-pvr-addons
 Section: video
 Priority: extra
 Maintainer: wsnipex <wsnipex@a1.net>
-Build-Depends: debhelper (>= 8.0.0), autoconf, autopoint | gettext, automake, libtool, libboost-thread-dev, libmysqlclient-dev, pkg-config, vdr-dev (>= 1.7.17), devscripts, lsb-release
+Build-Depends: debhelper (>= 8.0.0), autoconf, autopoint | gettext, automake, libtool, libboost-thread-dev, libmysqlclient-dev, pkg-config, vdr-dev (>= 1.7.17), devscripts, lsb-release, gawk
 Standards-Version: 3.9.3
 Homepage: http://xbmc.org
 Vcs-Git: git://github.com/opdenkamp/xbmc-pvr-addons.git
@@ -32,11 +32,11 @@ Description: XBMC PVR Addon VDR Vnsi - PVR API:#APIVERSION#
  the award winning free and open source software media-player and entertainment hub
  for all your digital media
 
-Package: vdr-plugin-vnsiserver
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, ${vdr:Depends}
-Description: VDR-Network-Streaming-Interface - PVR API:#APIVERSION#
- VDR-Network-Streaming-Interface
+#Package: vdr-plugin-vnsiserver
+#Architecture: any
+#Depends: ${shlibs:Depends}, ${misc:Depends}, ${vdr:Depends}
+#Description: VDR-Network-Streaming-Interface - PVR API:#APIVERSION#
+# VDR-Network-Streaming-Interface
 
 Package: xbmc-pvr-njoy
 Architecture: any

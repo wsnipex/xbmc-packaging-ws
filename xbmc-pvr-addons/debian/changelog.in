@@ -1,5 +1,1546 @@
 xbmc-pvr-addons (#PACKAGEVERSION#-0~#DIST#) #DIST#; urgency=high
 
+  [Bernd Kuhls]
+   * Enable Filmon PVR addon only when all dependencies were met
+
+
+
+  [Rainer Hochecker]
+   * vnsi: adapt to addon gui version bump
+
+  [Rainer Hochecker]
+   * sync addon gui version
+
+  [Stefan Saraev]
+   * [pvr.vdr.vnsi] - bump version to 1.9.16
+
+  [Stefan Saraev]
+   * [pvr.vdr.vnsi] settings: onFocus fixes
+
+  [Memphiz]
+   * [pvr.vdr.vnsi] - bump version to 1.9.15
+
+  [Memphiz]
+   * [pvr.vdr.vnsi] - fix compilation with xcode6
+
+  [Stephen Denham]
+   * Add Filmon PVR.
+
+  [Ryan Gribble]
+   * bump version to 0.3.102
+
+  [janbar]
+   * [mythtv] Release 1.9.22
+
+  [janbar]
+   * [cppmyth] Release 1.0.2
+
+  [Ryan Gribble]
+   * Populate new subchannel field Fixup version in clientversion.h will keep as version 101 if this makes it into XBMC sync
+
+
+  [janbar]
+   * [cppmyth] Add force ignored config file for WIN32
+
+  [Lars Op den Kamp]
+   * bump add-ons for PVR API bump
+
+  [Lars Op den Kamp]
+   * demo for subchannel support
+
+  [Lars Op den Kamp]
+   * sync API
+
+  [janbar]
+   * [mythtv] Initial release 1.9.20
+
+  [janbar]
+   * [mythtv] Add cppmyth library. Needed for the MythTV pvr addon
+
+  [janbar]
+   * [addons] bump versions of addons using XbmcPvrStream
+
+  [xhaggi]
+   * [demo] adds timer support
+
+  [xhaggi]
+   * [demo] bump version to 1.9.8
+
+  [xhaggi]
+   * [demo] adds directory support for recordings
+
+  [Ryan Gribble]
+   * [pvr.wmc] Bump version to 0.3.100
+
+  [Ryan Gribble]
+   * [pvr.wmc] Fix signalStatus call (wasn't updating the the cached item and overwrote signalStatus every call)
+
+  [Ryan Gribble]
+   * [pvr.wmc] Fix calls to XBMC->Log for clang compiler warning and general consistency
+
+  [janbar]
+   * Need dereference
+
+  [MichaelAnders]
+   * vnsi: bump version to 1.9.12
+
+  [MichaelAnders]
+   * vnsi: fix typo in client.cpp which may reset host name
+
+  [MichaelAnders]
+   * vnsi: Add Wake-on-LAN support
+
+  [Ryan Gribble]
+   * Rename libcmyth project (project filename, projectname and GUID only, not the name of the built library file or namespaces etc) to avoid it clashing with libcmyth_dll in the XBMC solution
+
+  [Ryan Gribble]
+   * Add PostBuildEvent to all pvr addon projects that robocopies their output to the local xbmc addons directory, when the project is part of the "XBMC for Windows" solution
+
+  [Jeroen]
+   * demo add-on version bump 1.9.6 -> 1.9.7
+
+  [Jeroen]
+   * extra's for pvr.demo add-on
+
+  [Ryan Gribble]
+   * sln file was not updated to VS2013 eventhough all the vcxproj were
+
+  [hudokkow]
+   * Makefile / configure - Sort alphabetically for clarity
+
+
+
+  [hudokkow]
+   * [pvr.vuplus] Bump addon to 1.9.14
+
+  [Ryan Gribble]
+   * bump version to 3.99
+
+  [Ryan Gribble]
+   * Fix to trigger recording list update after SetPlayCount called
+
+  [Ryan Gribble]
+   * Update README to provide info on building pvr addons together with XBMC on windows
+
+  [Mohamed El Morabity]
+   * Fix file permissions at installation
+
+  [Rainer Hochecker]
+   * VNSI: bump version to 1.9.11
+
+  [Garrett Brown]
+   * Fix c/p error (timeshift setting was applied to priority
+
+  [Rainer Hochecker]
+   * VNSI: label alignment fixes for skin confluence
+
+  [Rainer Hochecker]
+   * VNSI: bump max size of timeshift buffer ram
+
+  [Rainer Hochecker]
+   * VNSI: add icon path to channels
+
+  [Ryan Gribble]
+   * Add support for PlayCount/WatchedStatus being stored in the backend
+
+  [Ryan Gribble]
+   * Add Wake On LAN functionality Save/Load server MAC address in custom file in addon_data location Sends WOL packet to saved MAC address prior to attempting to connect() if the backend status is unknown or down. If backend is known to be up, no WOL is sent Also added debug messages to indicate Response OK and when starting connection rather than only when it fails Fixed GetBackendVersion() call, non static CStdString was being cleaned up invalidating the pointer that was returned from the function.
+
+  [Ryan Gribble]
+   * Send client's time (in UTC) to backend on GetServerVersion call Add notification for client vs backend clockdrift Support Info/Warn/Error level on client notifications
+
+  [Ryan Gribble]
+   * Set hostname and platform on non windows systems if possible
+
+  [Ryan Gribble]
+   * Increase version to 0.3.X for Helix development Bump version to 0.3.97
+
+  [Ryan Gribble]
+   * Support receiving notification messages from back end, and showing them as an XBMC toast notification Add stringID for "new version update available" notification
+
+  [Marcel Groothuis]
+   * [MediaPortal] Fixed: [TSReader] Direct playback of recordings that are stored on a network share
+
+  [Marcel Groothuis]
+   * [MediaPortal] Allow configuration of series recording settings. Add addon-specific GUI dialog to configure series recording options The dialog is only enabled when the corresponding skin support files are found.
+
+  [xhaggi]
+   * [addons] bump api version to 1.9.1
+
+  [xhaggi]
+   * [xbmc] sync pvr/epg type headers
+
+  [alanwww1]
+   * [lang] update of language files from Transifex
+
+  [wsoltys]
+   * [WIN32] fixed compilation with msbuild 2013
+
+  [Ken Dreyer]
+   * [pvr.wmc] bump version to 2.96
+
+  [Ken Dreyer]
+   * [pvr.wmc] use safe format arg to snprintf
+
+  [krustyreturns]
+   * version set to 2.95
+
+  [krustyreturns]
+   * Detect when RecordedTV share inaccessible to client
+
+  [krustyreturns]
+   * Improve triggering of XBMC GUI refresh for Timers/Recordings
+
+  [krustyreturns]
+   * Add workaround to get XBMC skip/seek to behave nicely for Active and Remuxed recordings
+
+  [Ryan Gribble]
+   * Bump version to 0.2.94
+
+  [Ryan Gribble]
+   * Add changelog file
+
+  [Ryan Gribble]
+   * Add Radio support
+
+  [wsoltys]
+   * [WIN32] changed vs project files to the new toolset.
+
+  [wsoltys]
+   * [WIN32] build pvr addons with vs2013.
+
+  [dvblogic]
+   * - Added DVBLink v5 server timeshift buffer support - Fixed series recordings display - Fixed genre, episode name and number import
+
+  [Mohamed El Morabity]
+   * Replace AC_PROG_LIBTOOL by LT_INIT
+
+  [Mohamed El Morabity]
+   * Don't install addon.xml.in files
+
+  [Graeme Blackley]
+   * Fixed bug that could cause connection to close prematurely.
+
+  [Garrett Brown]
+   * [pvr.vdr.vnsi] Fix segfault when showing scan dialog if VDR is not connected
+
+  [Ken Dreyer]
+   * tinyxml: update FSF address
+
+  [Ken Dreyer]
+   * platform: update FSF address
+
+  [Ken Dreyer]
+   * libhts: update FSF address
+
+  [Ken Dreyer]
+   * [pvr.wmc] update FSF address
+
+  [Ken Dreyer]
+   * [vuplus] update FSF address
+
+  [Ken Dreyer]
+   * vnsi: update FSF address
+
+  [Ken Dreyer]
+   * [njoy] update FSF address
+
+  [Ken Dreyer]
+   * [nextpvr] update FSF address
+
+  [Ken Dreyer]
+   * [pvr.mythtv.cmyth] update FSF address
+
+  [Ken Dreyer]
+   * [iptvsimple] update FSF address
+
+  [Ken Dreyer]
+   * [pvr.hts] update FSF address
+
+  [Ken Dreyer]
+   * [dvbviewer] update FSF address
+
+  [Ken Dreyer]
+   * [pvr.dvblink] update FSF address
+
+  [Ken Dreyer]
+   * [pvr.demo] update FSF address
+
+  [Ken Dreyer]
+   * [argustv] update FSF address
+
+  [Ken Dreyer]
+   * [mythtv-cmyth] Update LGPL 2.1 file and FSF address
+
+  [Ken Dreyer]
+   * [MediaPortal] Update GPL 2 file and FSF address
+
+  [Ken Dreyer]
+   * [iptvsimple] remove zero-length m3u file
+
+
+  [wsoltys]
+   * [WIN32] fixed compilation with msbuild 2013
+
+  [Ken Dreyer]
+   * [pvr.wmc] bump version to 2.96
+
+  [Ken Dreyer]
+   * [pvr.wmc] use safe format arg to snprintf
+
+  [krustyreturns]
+   * version set to 2.95
+
+  [krustyreturns]
+   * Detect when RecordedTV share inaccessible to client
+
+  [krustyreturns]
+   * Improve triggering of XBMC GUI refresh for Timers/Recordings
+
+  [krustyreturns]
+   * Add workaround to get XBMC skip/seek to behave nicely for Active and Remuxed recordings
+
+  [Ryan Gribble]
+   * Bump version to 0.2.94
+
+  [Ryan Gribble]
+   * Add changelog file
+
+  [Ryan Gribble]
+   * Add Radio support
+
+  [wsoltys]
+   * [WIN32] changed vs project files to the new toolset.
+
+  [wsoltys]
+   * [WIN32] build pvr addons with vs2013.
+
+  [dvblogic]
+   * - Added DVBLink v5 server timeshift buffer support - Fixed series recordings display - Fixed genre, episode name and number import
+
+  [Mohamed El Morabity]
+   * Don't install addon.xml.in files
+
+  [Graeme Blackley]
+   * Fixed bug that could cause connection to close prematurely.
+
+  [Garrett Brown]
+   * [pvr.vdr.vnsi] Fix segfault when showing scan dialog if VDR is not connected
+
+  [Ken Dreyer]
+   * tinyxml: update FSF address
+
+  [Ken Dreyer]
+   * platform: update FSF address
+
+  [Ken Dreyer]
+   * libhts: update FSF address
+
+  [Ken Dreyer]
+   * [pvr.wmc] update FSF address
+
+  [Ken Dreyer]
+   * [vuplus] update FSF address
+
+  [Ken Dreyer]
+   * vnsi: update FSF address
+
+  [Ken Dreyer]
+   * [njoy] update FSF address
+
+  [Ken Dreyer]
+   * [nextpvr] update FSF address
+
+  [Ken Dreyer]
+   * [pvr.mythtv.cmyth] update FSF address
+
+  [Ken Dreyer]
+   * [iptvsimple] update FSF address
+
+  [Ken Dreyer]
+   * [pvr.hts] update FSF address
+
+  [Ken Dreyer]
+   * [dvbviewer] update FSF address
+
+  [Ken Dreyer]
+   * [pvr.dvblink] update FSF address
+
+  [Ken Dreyer]
+   * [pvr.demo] update FSF address
+
+  [Ken Dreyer]
+   * [argustv] update FSF address
+
+  [Ken Dreyer]
+   * [mythtv-cmyth] Update LGPL 2.1 file and FSF address
+
+  [Ken Dreyer]
+   * [MediaPortal] Update GPL 2 file and FSF address
+
+  [Ken Dreyer]
+   * [iptvsimple] remove zero-length m3u file
+
+  [manuel]
+   * [dvbviewer] update changelog
+
+  [manuel]
+   * [dvbviewer] add support for grouping recordings
+
+  [manuel]
+   * [dvbviewer] fix using local favourites file
+
+  [manuel]
+   * [dvbviewer] add proper timeout to timeshift read
+
+  [manuel]
+   * [dvbviewer] fix tsbuffer length() returning a cached value
+
+  [manuel]
+   * [dvbviewer] disable caching for remote URLs
+
+  [manuel]
+   * [dvbviewer] use timezone offset for timers again
+
+  [manuel]
+   * [dvbviewer] prevent timeshift buffer from draining
+
+  [manuel]
+   * [dvbviewer] revert to localtime
+
+  [manuel]
+   * [dvbviewer] speed up timeshifting start
+
+  [manuel]
+   * [dvbviewer] minor cleanups in GenerateTimer
+
+  [manuel]
+   * [dvbviewer] cleanup timeshift api a bit
+
+  [manuel]
+   * [dvbviewer] don't cache recordings
+
+  [manuel]
+   * [dvbviewer] minor code cleanup
+
+  [manuel]
+   * [dvbviewer] add genre
+
+  [manuel]
+   * [dvbviewer] pump version to 1.9.15
+
+  [Fred Hoogduin]
+   * FIX iLastPlayedPosition was not set for recordings; updated version number and change log
+
+  [manuel]
+   * [dvbviewer] pump version to 1.9.14
+
+  [manuel]
+   * [dvbviewer] don't use timezone offset for timers
+
+  [manuel]
+   * [dvbviewer] tsbuffer: remove hungarian notations
+
+  [manuel]
+   * [dvbviewer] reduce implicit calls to SwitchChannel
+
+  [manuel]
+   * [dvbviewer] remove even more of the hungarian notations
+
+  [manuel]
+   * [dvbviewer] remove more of the hungarian notations
+
+  [manuel]
+   * [dvbviewer] implement low performance mode
+
+  [manuel]
+   * [dvbviewer] don't fetch epg language any more
+
+  [manuel]
+   * [dvbviewer] get rid of external XML parser library
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: move to own repo https://github.com/FernetMenta/vdr-plugin-vnsiserver
+
+
+  [manuel]
+   * [dvbviewer] pump version to 1.9.14
+
+  [manuel]
+   * [dvbviewer] don't use timezone offset for timers
+
+  [manuel]
+   * [dvbviewer] tsbuffer: remove hungarian notations
+
+  [manuel]
+   * [dvbviewer] reduce implicit calls to SwitchChannel
+
+  [manuel]
+   * [dvbviewer] remove even more of the hungarian notations
+
+  [manuel]
+   * [dvbviewer] remove more of the hungarian notations
+
+  [manuel]
+   * [dvbviewer] implement low performance mode
+
+  [manuel]
+   * [dvbviewer] don't fetch epg language any more
+
+  [manuel]
+   * [dvbviewer] get rid of external XML parser library
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: move to own repo https://github.com/FernetMenta/vdr-plugin-vnsiserver
+
+
+  [manuel]
+   * [dvbviewer] pump version to 1.9.14
+
+  [manuel]
+   * [dvbviewer] don't use timezone offset for timers
+
+  [manuel]
+   * [dvbviewer] tsbuffer: remove hungarian notations
+
+  [manuel]
+   * [dvbviewer] reduce implicit calls to SwitchChannel
+
+  [manuel]
+   * [dvbviewer] remove even more of the hungarian notations
+
+  [manuel]
+   * [dvbviewer] remove more of the hungarian notations
+
+  [manuel]
+   * [dvbviewer] implement low performance mode
+
+  [manuel]
+   * [dvbviewer] don't fetch epg language any more
+
+  [manuel]
+   * [dvbviewer] get rid of external XML parser library
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: move to own repo https://github.com/FernetMenta/vdr-plugin-vnsiserver
+
+
+  [manuel]
+   * [dvbviewer] pump version to 1.9.14
+
+  [manuel]
+   * [dvbviewer] don't use timezone offset for timers
+
+  [manuel]
+   * [dvbviewer] tsbuffer: remove hungarian notations
+
+  [manuel]
+   * [dvbviewer] reduce implicit calls to SwitchChannel
+
+  [manuel]
+   * [dvbviewer] remove even more of the hungarian notations
+
+  [manuel]
+   * [dvbviewer] remove more of the hungarian notations
+
+  [manuel]
+   * [dvbviewer] implement low performance mode
+
+  [manuel]
+   * [dvbviewer] don't fetch epg language any more
+
+  [manuel]
+   * [dvbviewer] get rid of external XML parser library
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: move to own repo https://github.com/FernetMenta/vdr-plugin-vnsiserver
+
+
+  [manuel]
+   * [dvbviewer] pump version to 1.9.14
+
+  [manuel]
+   * [dvbviewer] don't use timezone offset for timers
+
+  [manuel]
+   * [dvbviewer] tsbuffer: remove hungarian notations
+
+  [manuel]
+   * [dvbviewer] reduce implicit calls to SwitchChannel
+
+  [manuel]
+   * [dvbviewer] remove even more of the hungarian notations
+
+  [manuel]
+   * [dvbviewer] remove more of the hungarian notations
+
+  [manuel]
+   * [dvbviewer] implement low performance mode
+
+  [manuel]
+   * [dvbviewer] don't fetch epg language any more
+
+  [manuel]
+   * [dvbviewer] get rid of external XML parser library
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: move to own repo https://github.com/FernetMenta/vdr-plugin-vnsiserver
+
+
+  [manuel]
+   * [dvbviewer] pump version to 1.9.14
+
+  [manuel]
+   * [dvbviewer] don't use timezone offset for timers
+
+  [manuel]
+   * [dvbviewer] tsbuffer: remove hungarian notations
+
+  [manuel]
+   * [dvbviewer] reduce implicit calls to SwitchChannel
+
+  [manuel]
+   * [dvbviewer] remove even more of the hungarian notations
+
+  [manuel]
+   * [dvbviewer] remove more of the hungarian notations
+
+  [manuel]
+   * [dvbviewer] implement low performance mode
+
+  [manuel]
+   * [dvbviewer] don't fetch epg language any more
+
+  [manuel]
+   * [dvbviewer] get rid of external XML parser library
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: move to own repo https://github.com/FernetMenta/vdr-plugin-vnsiserver
+
+
+  [Lars Op den Kamp]
+   * [pvr.hts] bump add-on version
+
+  [Marcel Groothuis]
+   * [MediaPortal] Fixed: recording playback over rtsp in ffmpeg mode
+
+  [Marcel Groothuis]
+   * [MediaPortal] Update Changelog and version number to v1.9.13
+
+  [Marcel Groothuis]
+   * [MediaPortal] Recordings: Check for in progress recordings and use play them always via the PVR addon
+
+  [Marcel Groothuis]
+   * [MediaPortal] Properly close an ongoing timeshift when opening fails.
+
+  [Marcel Groothuis]
+   * [MediaPortal] Add better debug/error logging
+
+  [Marcel Groothuis]
+   * [MediaPortal] Reduce the signal status calls to once every 10s.
+
+  [Marcel Groothuis]
+   * [MediaPortal] Detect and report permission denied errors on Live/Recording access
+
+  [Marcel Groothuis]
+   * [MediaPortal] Add missing GPL headers
+
+  [Marcel Groothuis]
+   * [MediaPortal] Check for command execution errors
+
+  [Marcel Groothuis]
+   * [MediaPortal] Allow empty username and password for SMB share access
+
+  [Marcel Groothuis]
+   * [MediaPortal] TSReader: Don't replace \ by smb:// when not at the start of the path
+
+  [Marcel Groothuis]
+   * [MediaPortal] Channel thumbnails: replace more invalid file name characters in the channel name by a _
+
+  [Marcel Groothuis]
+   * [MediaPortal] Fix gcc compiler and CPPcheck warnings
+
+  [Marcel Groothuis]
+   * [MediaPortal] Enable fast channel switching by default. The already added PAT detection searches for the start of the new channel in the timeshift buffer file.
+
+  [Fred Hoogduin]
+   * [argustv] Fix: use EPG data to retrieve original title, this improves timer conflict detection (much!) [argustv] Fix: threads now working as intented on OSX
+
+  [Stefan Saraev]
+   * vnsi5: confluence color fixes
+
+  [manuel]
+   * [dvbviewer] pump version to 1.9.14
+
+  [manuel]
+   * [dvbviewer] don't use timezone offset for timers
+
+  [manuel]
+   * [dvbviewer] tsbuffer: remove hungarian notations
+
+  [manuel]
+   * [dvbviewer] reduce implicit calls to SwitchChannel
+
+  [manuel]
+   * [dvbviewer] remove even more of the hungarian notations
+
+  [manuel]
+   * [dvbviewer] remove more of the hungarian notations
+
+  [manuel]
+   * [dvbviewer] implement low performance mode
+
+  [manuel]
+   * [dvbviewer] don't fetch epg language any more
+
+  [manuel]
+   * [dvbviewer] get rid of external XML parser library
+
+  [Rainer Hochecker]
+   * check for gl2 header when checking for GLES
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: move to own repo https://github.com/FernetMenta/vdr-plugin-vnsiserver
+
+  [alanwww1]
+   * [lang] update of language files from Transifex
+
+  [Sam Stenvall]
+   * [pvr.hts] populate channel icon for recordings
+
+  [Chris "Koying" Browet]
+   * FIX: android x86 build
+
+  [Rainer Hochecker]
+   * vnsi: allow protocol version of server to be higher
+
+  [Rainer Hochecker]
+   * vnsi: bump version
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: fix thread priorities
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: correct flag for GetDevice, credits to manio
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: implement status msg channelchange
+
+  [Rainer Hochecker]
+   * vnsi: add skin file for AEON NOX 5, thanks to BigNoid
+
+
+  [alanwww1]
+   * [lang] update of language files from Transifex
+
+  [kendrak24]
+   * Implemented GetRecordingEdl for pvr.hts addon.
+
+  [amet]
+   * [pvr.hts] fix issue where "client specific settings" window would not open
+
+  [Fred Hoogduin]
+   * [argustv] added monitor thread to aggregate and handle ARGUS TV service events
+
+
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: fix compile error after vdr 2.1.4
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: drop old debug logging
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: bump version to 0.9.4
+
+  [Rainer Hochecker]
+   * vnsi: bump version to 1.9.6
+
+  [Ryan Gribble]
+   * up Gotham addon version to 0.2.93 and update to new icon
+
+  [Ryan Gribble]
+   * Add retry functionality, enabled only for Read operations Add guarding against incorrect number of fields in responses
+
+  [Ryan Gribble]
+   * Implement Channel Groups
+
+  [Bernhard Froehlich]
+   * Add FreeBSD defines to the Socket code
+
+  [Bernhard Froehlich]
+   * Add ADDON_HELPER_ARCH for FreeBSD
+
+  [Bernhard Froehlich]
+   * Teach configure how to distinguish between FreeBSD amd64 and i386
+
+  [Bernhard Froehlich]
+   * freebsd: Add FreeBSD platform to the addon.xml files
+
+  [Christian Fetzer]
+   * [mythtv-cmyth] Release v1.9.14
+
+  [WiSo]
+   * [WIN32] fixed linking of pvr.dvblink
+
+  [Rainer Hochecker]
+   * vnsi: update length of recording
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: update length of recording
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: detect latm and adts by parsing
+
+  [Anton Fedchin]
+   * [iptvsimple] new version. see changelog.txt for details.
+
+
+  [Lars Op den Kamp]
+   * delete crap that shouldn't be in here
+
+  [Sam Stenvall]
+   * fix some compiler warnings
+
+  [Sam Stenvall]
+   * [pvr.hts] only add subtitle stream identifier for DVB subtitles
+
+  [Sam Stenvall]
+   * don't ignore TEXTSUB streams
+
+  [Sam Stenvall]
+   * always copy existing streams, otherwise stream property changes like language won't propagate
+
+  [Sam Stenvall]
+   * reuse GetStreamId() so we can get rid of one operator overload
+
+  [Sam Stenvall]
+   * add xbmc_codec_descriptor.hpp to reduce code duplication
+
+  [Sam Stenvall]
+   * remove unused class definition
+
+  [Sam Stenvall]
+   * refactoring xbmc_stream_utils.hpp completely in order to fix a bunch of outstanding issues.
+
+  [Marcel Groothuis]
+   * [pvr.wmc] win32: Fix PVR addon DLL name in release build and remove unneeded build events
+
+  [Marcel Groothuis]
+   * [pvr.wmc] Windows: Fix @ARCHITECTURE@ replacement in addon.xml.in
+
+  [Marcel Groothuis]
+   * [pvr.wmc] Fix Windows release build
+
+  [Rainer Hochecker]
+   * vnsi: fix build error on Windowns
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: fix incorrect language on audio and subs
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: fix latm, wrong codec name
+
+  [Fred Hoogduin]
+   * [argustv] Create new timers based on default schedule retrieved from ARGUS server. Removed warnings about unused parameters in ADDON_Announce
+
+  [Ryan Gribble]
+   * Add quotes to Platform project pre build event
+
+  [Ryan Gribble]
+   * add build artefacts to gitignore file
+
+  [Ryan Gribble]
+   * Add pvr.wmc addon to Makefile, configure, and VS solution
+
+  [Ryan Gribble]
+   * Add pvr.wmc addon code to github and prepare for official XBMC repo
+
+  [Fred Hoogduin]
+   * remove redundant Kai Toast
+
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: check and reset modified flag for channels instead of looking at file
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: update change log
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: fix a bug in epg auto update
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: raise nice level for vnsi threads
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: do not set pts for dts on video streams
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: add channel filter
+
+  [Rainer Hochecker]
+   * VNSI: add channel filter
+
+  [dfdario]
+   * Update addon.xml.in
+
+  [Rainer Hochecker]
+   * VNSI: adapt skin files to left, top instead of posx, posy
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: bump version to 0.9.3
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: bump protocol version to 5
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: add edl support
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: send buffer times for timeshift
+
+  [Rainer Hochecker]
+   * VNSI: bump protocol version to 5
+
+  [Rainer Hochecker]
+   * VNSI: bump version to 1.9.5
+
+  [Rainer Hochecker]
+   * VNSI: add edl support
+
+  [Rainer Hochecker]
+   * VNSI: add new timeshift functions
+
+  [Graeme Blackley]
+   * - added dialog to set recurring recordings, including recurrence type, padding, number of recordings to keep, and recording directory - added support for EDL - added support for retrieving and storing last playback position - now requires NextPVR 3.1.1 or higher - fixed a bug that could cause an EPG event with no description to have a copy of last show's description, or cause a crash if the user was unlucky. - more flexible approach to genre
+
+
+  [Rainer Hochecker]
+   * VNSI: fix incorrect version of addon.gui
+
+  [Rainer Hochecker]
+   * addongui: fix incorrect version
+
+
+  [Rainer Hochecker]
+   * nextpvr: add missing stubs after a4550db9372fac5521f03b01fa01dd4adfebd983
+
+  [Lars Op den Kamp]
+   * bump add-ons to 1.9.0. added stubs in dvblink
+
+  [Lars Op den Kamp]
+   * sync copyright notices
+
+  [Lars Op den Kamp]
+   * bump pvr add-ons to 1.9.0
+
+  [Rainer Hochecker]
+   * adapt addons to pvr api change, add timeshift buffer methods
+
+  [Rainer Hochecker]
+   * sync pvr api with mainline repo
+
+  [Sam Stenvall]
+   * populate service/provider name and mux in PVR_SIGNAL_STATUS
+
+  [Christian Fetzer]
+   * [mythtv-cmyth] Release v1.8.13
+
+  [Fred Hoogduin]
+   * [argustv-fix] Fix deletion of recordings (regression); Improve the load time of all recordings; Cleanup and remove redundant code
+
+  [Fred Hoogduin]
+   * Fixes playing recordings on Windows; All UNC share name versus CIFS name handling is now isolated into two methods
+
+  [Stefan Saraev]
+   * vdr 2.1.2 buildfix
+
+  [Palle Rosendahl Ehmsen]
+   * DVBLink Connect! Server PVR Addon
+
+
+
+
+
+
+
+
+
+  [Rainer Hochecker]
+   * vnsi: fix loading on android by linking GLESv2
+
+  [Rainer Hochecker]
+   * vnsi: bump version to 1.8.4
+
+  [Rainer Hochecker]
+   * vnsi: add guilib as required addon xml
+
+  [Rainer Hochecker]
+   * vnsi: fix wrong format specifier in error log
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: fix seeking, only consider audio and video streams for searching
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: FreeBSD patches, credits to Juergen Lock
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: check all timers for active recordings when opening a channel
+
+  [Fred Hoogduin]
+   * [argustv-new] log the actual amount of time the TV server takes to tune, log the amount of time it takes to retreive the recordings
+
+  [Fred Hoogduin]
+   * [argustv-new] Implementing the new integer id's now provided by ARGUS TV
+
+  [Lars Op den Kamp]
+   * [hts] bump to 1.8.22
+
+  [Lars Op den Kamp]
+   * [hts] cosmetics
+
+  [Lars Op den Kamp]
+   * [hts] use a timeout in CHTSPDemux::GetStreamProperties() so we don't block forever when we can't tune to a channel. closes #220
+
+  [Rainer Hochecker]
+   * fix potential wrong error code in posix socket
+
+  [Rainer Hochecker]
+   * port socket fix from 918f59fbe26571f78231f380f3304fd164b19b10 to Windows
+
+  [Marcel Groothuis]
+   * [MediaPortal] Update TVServer enums and put them in the TvDatabase namespace
+
+  [Marcel Groothuis]
+   * [MediaPortal] Update genre translation table with missing strings (based on the id-to-string translation table in the MediaPortal epgDecoder sources)
+
+  [Fred Hoogduin]
+   * [argustv-fix] Live-TV was not working on XBMC Gotham Windows
+
+  [manuel]
+   * [dvbviewer] update changelog
+
+  [manuel]
+   * [dvbviewer] fix channel numbers for favourites
+
+  [manuel]
+   * [dvbviewer] make BuildExtURL work for schemes other than http/https
+
+  [manuel]
+   * [dvbviewer] sync with PVR API v1.8.1
+
+  [manuel]
+   * [dvbviewer] avoid double encodes of format specifiers
+
+  [manuel]
+   * [dvbviewer] use c_str() just to make sure
+
+  [manuel]
+   * [dvbviewer] fix channel index in GenerateTimer
+
+  [manuel]
+   * [dvbviewer] force channel sync on start
+
+  [manuel]
+   * [dvbviewer] make RTSP working
+
+  [manuel]
+   * [dvbviewer] require addon restart after changing usetimeshift/usertsp
+
+  [manuel]
+   * [dvbviewer] avoid an unnecessary copy
+
+  [manuel]
+   * [dvbviewer] fix possible crash
+
+  [manuel]
+   * [dvbviewer] fix possible crash
+
+  [manuel]
+   * [dvbviewer] make channel group creation more sane
+
+  [manuel]
+   * [dvbviewer] rewrite channel + favourite list parsing
+
+  [manuel]
+   * [dvbviewer] update delete record api url
+
+  [manuel]
+   * [dvbviewer] get rid of some hungarian notation. more to follow
+
+  [manuel]
+   * [dvbviewer] clean up dtor
+
+  [manuel]
+   * [dvbviewer] rewrote recording parsing
+
+  [manuel]
+   * [dvbviewer] use generic methods for building urls to backend
+
+  [manuel]
+   * [dvbviewer] minor code cleanup
+
+  [manuel]
+   * [dvbviewer] use RS api to get timezone/language
+
+  [manuel]
+   * [dvbviewer] more method renaming to be in line with the PVR API
+
+  [manuel]
+   * [dvbviewer] rename GetDeviceInfo to GetBackendVersion
+
+  [manuel]
+   * [dvbviewer] remove signal status, fix version parsing
+
+  [manuel]
+   * [dvbviewer] pump version to 1.8.10
+
+  [Anton Fedchin]
+   * [iptvsimple] Release v1.8.1
+
+  [Christian Fetzer]
+   * [mythtv-cmyth] Release v1.8.12
+
+  [Marcel Groothuis]
+   * [MediaPortal] Debugging: Add/change log notifications
+
+  [Marcel Groothuis]
+   * [MediaPortal] Code cleanup: drop support for TVServerXBMC builds older than 1.x.x.107
+
+  [Marcel Groothuis]
+   * [MediaPortal] Hide smb password in debug xbmc.log file
+
+  [Marcel Groothuis]
+   * [MediaPortal] Added: support for retrieving channels from multiple specified groups (>1, < All groups) Requires at least TVServerXBMC 1.2.3.122 or 1.3.0.122
+
+  [Marcel Groothuis]
+   * [MediaPortal] use ADDON_STATUS return value in Connect()
+
+  [Marcel Groothuis]
+   * [MediaPortal] Fix possible out-of-bounds access on the m_cCards array
+
+  [Marcel Groothuis]
+   * [MediaPortal] changed CCards::ParseLines code a bit. One user experienced a crash inside this function.
+
+  [Marcel Groothuis]
+   * [MediaPortal] Trigger a recording list update when the backend couldn't find the selected recording
+
+  [Marcel Groothuis]
+   * [MediaPortal] Recordings: Add support for LastPlayedPosition (requires TVServerXBMC build 121 or higher)
+
+  [Marcel Groothuis]
+   * [MediaPortal] simplify and cleanup receive code
+
+  [Marcel Groothuis]
+   * [MediaPortal] Update addon version number and changelog to 1.8.9
+
+  [Marcel Groothuis]
+   * [MediaPortal] TSReader: OnZap: Enable PAT change detection also on non-Windows systems
+
+  [Marcel Groothuis]
+   * [MediaPortal] TSReader: fix channel switching behavior when switching across tsbuffer files
+
+  [Marcel Groothuis]
+   * [MediaPortal] TSReader: updated to return smb:// URI's instead of \UNC paths to XBMC (also for Windows)
+
+  [Marcel Groothuis]
+   * [MediaPortal] TSReader: Add translation functions to translate Windows and UNC paths to and from XBMC paths
+
+  [Marcel Groothuis]
+   * [MediaPortal] TSReader code cleanup
+
+  [Marcel Groothuis]
+   * [MediaPortal] TSReader: add PAT detection to find the start of the new channel in the timeshift buffer file. This should fix SD<->HD channel switching with "fast channel switching" enabled.
+
+
+
+
+  [Rainer Hochecker]
+   * vnsi: bump version
+
+  [Rainer Hochecker]
+   * vnsi: fix ReadMessage
+
+  [Lars Op den Kamp]
+   * [hts] bump add-on version
+
+  [Lars Op den Kamp]
+   * [hts] if we read less than 4 bytes in the initial packet size read, don't discard it but wait for the rest to come in within iDatapacketTimeout. issue #181
+
+  [Lars Op den Kamp]
+   * don't return early when poll failed, but do another read. issue #181
+
+  [Lars Op den Kamp]
+   * [hts] tvheadend uses it's own byte order. don't use ntohl. credits @dezi. issue #181
+
+  [Lars Op den Kamp]
+   * return nb bytes read instead of the error code when data was read. credits @dezi. issue #181
+
+  [Lars Op den Kamp]
+   * removed avcodec.h and use callback methods from XBMC to get codec IDs instead. removed external ffmpeg check
+
+
+
+  [Rainer Hochecker]
+   * vnsi: fix Makefile.am, did not include all objs
+
+  [Christian Fetzer]
+   * [mythtv-cmyth] win32: Add TARGET_WINDOWS for release builds
+
+  [Lars Op den Kamp]
+   * vnsi: fix compilation after 298fcd35917190edb72d8b6f9715c268aff494a4
+
+  [Anton Fedchin]
+   * [iptvsimple] new pvr.iptvsimple addon.
+
+
+  [Christian Fetzer]
+   * win32: Make sure that all addon projects define TARGET_WINDOWS
+
+  [Lars Op den Kamp]
+   * bump add-on versions after PVR API change
+
+  [Lars Op den Kamp]
+   * sync pvr api headers
+
+  [Christian Fetzer]
+   * sync: Adapt CallMenuHook to API change
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: do not assume a pes header right after pusi for video streams
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: h264 parser - reset stream data on error
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: allow timeshift buffer in RAM to larger than 2 GB, change size_t to off_t
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: silence compiler warning
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: fix layer for mpeg audio
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: squash to specific errors
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: present specific parser errors to user
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: fix potential segfault when reading incorrent pes header size
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: recplayer, drop NOATIME flag on open
+
+  [xbmc]
+   * vnsi: disable callback PVRRecording, fixes deadlock
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: increase max buffer size for pes packets
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: atsc does not suppport mpeg2 audio, interpret pmt accordingly
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: fix segfault when feeded with scrambled packets
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: fix occasional incorrect timestamps after 505336e0b99306f95199d00f65bd7ef7ec2a9371
+
+  [unknown]
+   * vnsi: correct vs project after adding dx
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: fix getting stuck by reading eof at end of segment
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: rework and fixes on video parsers
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: fix test harness
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: only observe pts wraps on audio and video streams
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: cleanup and fixes in pes parser
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: do not transmit packates older than first frame, avoids large disconts on start of playback
+
+  [xbmc]
+   * vdr-plugin-vnsiserver: fix compile error for loder vdr versions
+
+  [xbmc]
+   * vdr-plugin-vnsiserver: update headers
+
+  [xbmc]
+   * vnsi: bump version to 1.8.0
+
+  [xbmc]
+   * vnsi: raise max value for timeshift buffers
+
+  [xbmc]
+   * vdr-plugin-vnsiserver: raise max value for timeshift buffers
+
+  [xbmc]
+   * vnsi: fix fallback method for skins
+
+  [xbmc]
+   * vnsi: rework settings dialog for skin clonfluence
+
+  [xbmc]
+   * vnsi: add skin file for aeon.nox
+
+  [xbmc]
+   * vnsi: add gles rendering for vdr ui
+
+  [xbmc]
+   * configure check for gles2
+
+  [xbmc]
+   * rbp: set rpath-link needed by automake
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: add config option for timeshift buffer directory
+
+  [xbmc]
+   * vnsi: add timeshift buffer status
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: optimize recplayer
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: add buffer status message
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: optimize file buffer method for timeshift
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: increase read cache
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: fix subtitle errors in xbmc log
+
+  [xbmc]
+   * vnsi: dont scan timer titles for directory delimiters
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: limit rescan for recording in progress
+
+  [xbmc]
+   * vnsi: check version of guiaddon lib
+
+  [xbmc]
+   * vnsi: set priority for live tv
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: set priority for livetv, allow interrupt by rocording
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: replay recording in progress
+
+  [xbmc]
+   * vnsi: add file buffer for timeshift
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: add file buffer for timeshift
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: parse setup parameter before saving
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: bump version to 0.9.2
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: tag mux packet with a serial
+
+  [xbmc]
+   * vnsi: timeshift, tag mux packets with a serial
+
+  [xbmc]
+   * vnsi: bump protocol version to 4
+
+  [unknown]
+   * vnsi: add osd rendering for DX
+
+  [xbmc]
+   * vnsi: add settings page for setup
+
+  [xbmc]
+   * vnsi: timeshift support
+
+  [Rainer Hochecker]
+   * vdr-plugin-vnsiserver: timeshift
+
+  [unknown]
+   * vnsi: osd - update vs project
+
+  [xbmc]
+   * vnsi: close connection on packet sync error
+
+  [xbmc]
+   * vnsi: osd - correct colors
+
+  [xbmc]
+   * vnsi: drop dead code: SendPing
+
+  [xbmc]
+   * vnsi: osd - check if wndId is out of bounds
+
+  [xbmc]
+   * vnsi: trigger epg update
+
+  [xbmc]
+   * vnsi: vdr osd
+
+  [Christian Fetzer]
+   * [mythtv-cmyth] Release v1.7.11
+
+  [Jörg Dembski]
+   * vuplus: fixups
+
+  [manuel]
+   * pump version to 1.7.9
+
+  [manuel]
+   * fix loading top level favourite channels
+
+  [manuel]
+   * [dvbviewer] pump version to 1.7.8
+
+  [manuel]
+   * [dvbviewer] fix crash with RS 1.25.0, pump version
+
+  [manuel]
+   * [dvbviewer] fix typo in vs project file
+
+  [xbmc]
+   * rbp: set rpath-link needed by automake
+
+  [xbmc]
+   * configure check for gles2
+
+  [manuel]
+   * [dvbviewer] pump version to 1.7.7
+
+  [manuel]
+   * [dvbviewer] fix possible crash during timer updates
+
+  [manuel]
+   * [dvbviewer] forgot about a changelog entry
+
+  [Fred Hoogduin]
+   * [argustv-fix] fixed error that occurred when adding a Timer with " in the title
+
+  [manuel]
+   * [dvbviewer] 64bit channel ids, code cleanup and much more
+
+  [manuel]
+   * massive code cleanup/coding style
+
+  [manuel]
+   * [dvbviewer] make the ui settings more robust
+
+  [manuel]
+   * [dvbviewer] add basic support for timeshift
+
+
+
+  [Lars Op den Kamp]
+   * sync ffmpeg codec ids. closes #195
+
+
+
+
+
+
+  [Lars Op den Kamp]
+   * [mythtv-cmyth] bump to 1.7.10. we already had a 1.7.9 and forgot to bump after the last change
+
+  [Christian Fetzer]
+   * [mythtv-cmyth] Changelog for 1.7.9
+
+  [Christian Fetzer]
+   * [mythtv-cmyth] Fill iLastPlayedPosition when transfering recordings
+
+  [Lars Op den Kamp]
+   * bump add-on versions and pvr api dependency version
+
+  [Lars Op den Kamp]
+   * bumped api to v1.7.0
+
+  [Christian Fetzer]
+   * sync: Add iLastPlayedPosition to PVR_RECORDING. Issue #170
+
+  [Lars Op den Kamp]
+   * sync api date bump in the copyright
+
+  [Jörg Dembski]
+   * [vuplus] fix typo in langugage file
+
+  [Lars Op den Kamp]
+   * updated README for windows
+
+  [xbmc]
+   * bump api version to 1.6.1
+
+  [xbmc]
+   * add version for addongui lib
+
+  [xbmc]
+   * configure: check for GL
+
+  [xbmc]
+   * addongui: sync with xbmc
+
+  [Adam Sutton]
+   * [tvheadend] fix return PTS when skipping
+
+  [Adam Sutton]
+   * [tvheadend] update addon version info
+
+  [Adam Sutton]
+   * [tvheadend] correct previous mistaken fix to webroot processing
+
+  [Adam Sutton]
+   * [tvheadend] update subscriptionSeek call to use abs PTS
+
+  [Christian Fetzer]
+   * [mythtv-cmyth] Release v1.6.9
+
+  [Adam Sutton]
+   * [tvheadend] ensure timeshiftStatus does not spam logs
+
+  [Adam Sutton]
+   * [tvheadend] added working seek support.
+
+  [Christian Fetzer]
+   * [mythtv-cmyth] Implement GetRecordingEdl
+
+  [Christian Fetzer]
+   * [mythtv-cmyth] Add GetCommbreakList and GetCutList functions to MythConnection
+
+  [Christian Fetzer]
+   * sync: Add GetRecordingEdl stubs to all addons
+
+  [Christian Fetzer]
+   * sync: GetRecordingEdl
+
+  [Christian Fetzer]
+   * sync: Add WakeOnLan
+
+  [Christian Fetzer]
+   * [mythtv-cmyth] Handle OnSleep/OnWake announcements
+
+  [Christian Fetzer]
+   * sync: Add ADDON_Announce to all addons
+
+  [Christian Fetzer]
+   * sync: Add ADDON_Announce
+
+
   * Initial release 
 
  -- wsnipex <wsnipex@a1.net>  Fri, 21 Dec 2012 11:06:07 +0100

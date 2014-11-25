@@ -1,4 +1,4 @@
-xbmc-pvr-addons (#PACKAGEVERSION#-0~#DIST#) #DIST#; urgency=high
+kodi-pvr-addons (#PACKAGEVERSION#-0~#DIST#) #DIST#; urgency=high
 
   [Bernd Kuhls]
    * Enable Filmon PVR addon only when all dependencies were met

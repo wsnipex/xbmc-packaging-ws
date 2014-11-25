@@ -63,7 +63,7 @@ function buildPackage {
     [[ -z $TAGREV ]] && TAGREV=0
     archiveRepo
     cd $REPO_DIR/debian
-    sed -i "s/#PACKAGEVERSION#/${DEST#xbmc-pvr-addons-}/g" changelog.in
+    sed -i "s/#PACKAGEVERSION#/${DEST#kodi-pvr-addons-}/g" changelog.in
     [[ $(createDebs) -eq 0 ]] && uploadpkgs #&& saveTagRev
 }
 
@@ -78,7 +78,7 @@ function archiveRepo {
     #    exit 4
     #fi
     [[ -d debian ]] && rm -rf debian
-    DEST="xbmc-pvr-addons-1.0.0~git$(date '+%Y%m%d.%H%M')-${TAG}"
+    DEST="kodi-pvr-addons-1.0.0~git$(date '+%Y%m%d.%H%M')-${TAG}"
     cp -r $DEBIAN . #TODO better debian dir handling
     mv $(basename $DEBIAN) debian 2>/dev/null
     echo $TAGREV > debian/versiontag

@@ -1,9 +1,9 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: xbmc-pvr-addons
+Upstream-Name: kodi-pvr-addons
 Source: https://github.com/opdenkamp/xbmc-pvr-addons
 
 Files: debian/*
-Copyright: 2012 wsnipex <wsnipex@xbmc.org>
+Copyright: 2012 wsnipex <wsnipex@kodi.tv>
 License: GPL-2+
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by

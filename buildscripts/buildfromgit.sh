@@ -37,7 +37,7 @@ function updateRepo {
     git reset --hard $UPSTREAM_REPO/$UPSTREAM_BRANCH >> $LOG || exit 6
     #[[ -n $COMMIT ]] && git reset --hard $COMMIT >> $LOG || exit 7
     [[ -n $COMMIT ]] && ( echo "using $COMMIT" >> $LOG && git reset --hard $COMMIT >> $LOG || exit 7)
-    git clean -Xfd
+    git clean -xfd
     [[ -n $PATCHES ]] && addPatchesFromFile
     [[ $INCLUDE_FFMPEG != "False" ]] && addFFmpeg
 }
@@ -86,8 +86,7 @@ function buildPackage {
     [[ -z $TAGREV ]] && TAGREV=0
     archiveRepo
     cd $REPO_DIR/debian
-    #sed -i "s/~git.*-0/${DEST#xbmc-12.0}-${TAGREV}/g" changelog.tmp
-    sed -i "s/2:.*-0/2:${DEST#xbmc-}-${TAGREV}/g" changelog.tmp
+    sed -i "s/2:.*-0/2:${DEST#kodi-}-${TAGREV}/g" changelog.tmp
     [[ $(createDebs) -eq 0 ]] && uploadpkgs && saveTagRev
 }
 
@@ -97,7 +96,7 @@ function archiveRepo {
     cd $REPO_DIR || exit 1
     echo $UPSTREAMREV > gitrev
     echo $UPSTREAMREV > VERSION
-    DEST="xbmc-${RELEASEV}~git$(date '+%Y%m%d.%H%M')-${TAG}"
+    DEST="kodi-${RELEASEV}~git$(date '+%Y%m%d.%H%M')-${TAG}"
     [[ -d debian ]] && rm -rf debian 
     cp -r $DEBIAN . #TODO better debian dir handling
     mv $(basename $DEBIAN) debian
@@ -169,7 +168,7 @@ function createChangelog {
     done
     echo >> $changes
     cp $DEBIAN/changelog.tmp $DEBIAN/changelog.tmp.old
-    sed -i "/^xbmc/r $changes" $DEBIAN/changelog.tmp
+    sed -i "/^kodi/r $changes" $DEBIAN/changelog.tmp
 }
 
 

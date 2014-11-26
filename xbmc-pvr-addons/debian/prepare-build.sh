@@ -20,12 +20,12 @@ fi
 # detect Pvr Api version
 ###
 PVRAPI=$(awk '/XBMC_PVR_API_VERSION/ {gsub("\"",""); print $3 }' ../xbmc/xbmc_pvr_types.h)
-echo "detected Xbmc PVR-API: $PVRAPI"
+echo "detected PVR API: $PVRAPI"
 
 ###
 # Create control and changelog. This file MUST exist with the correct package name before calling debuild
 ###
-echo "Generating changelog with PVR Api version $PVRAPI"
+echo "Generating changelog with PVR API version $PVRAPI"
 sed -e "s/#APIVERSION#/$PVRAPI/g" -e "s/#DIST#/$dist/g" changelog.in > changelog
 echo "Generating control file"
 sed "s/#APIVERSION#/$PVRAPI/g" control.in > control
@@ -34,17 +34,17 @@ sed "s/#APIVERSION#/$PVRAPI/g" control.in > control
 # Define upstream addon name to package name mapping
 ###
 declare -A PACKAGES=(
-	["pvr.hts"]="xbmc-pvr-tvheadend-hts"
-	["pvr.vuplus"]="xbmc-pvr-vuplus"
-	["pvr.mediaportal.tvserver"]="xbmc-pvr-mediaportal-tvserver"
-	["pvr.dvbviewer"]="xbmc-pvr-dvbviewer"
-	["pvr.argustv"]="xbmc-pvr-argustv"
-	["pvr.mythtv.cmyth"]="xbmc-pvr-mythtv-cmyth"
-	["pvr.vdr.vnsi"]="xbmc-pvr-vdr-vnsi"
-	["pvr.nextpvr"]="xbmc-pvr-nextpvr"
-	["pvr.demo"]="xbmc-pvr-demo"
-	["pvr.njoy"]="xbmc-pvr-njoy"
-        ["pvr.iptvsimple"]="xbmc-pvr-iptvsimple"
+	["pvr.hts"]="kodi-pvr-tvheadend-hts"
+	["pvr.vuplus"]="kodi-pvr-vuplus"
+	["pvr.mediaportal.tvserver"]="kodi-pvr-mediaportal-tvserver"
+	["pvr.dvbviewer"]="kodi-pvr-dvbviewer"
+	["pvr.argustv"]="kodi-pvr-argustv"
+	["pvr.mythtv"]="kodi-pvr-mythtv"
+	["pvr.vdr.vnsi"]="kodi-pvr-vdr-vnsi"
+	["pvr.nextpvr"]="kodi-pvr-nextpvr"
+	["pvr.demo"]="kodi-pvr-demo"
+	["pvr.njoy"]="kodi-pvr-njoy"
+        ["pvr.iptvsimple"]="kodi-pvr-iptvsimple"
 )
 
 ###
@@ -64,9 +64,9 @@ do
 	echo "${version}" > ${PACKAGES["$package"]}.version
 	if [[ -f $changelog ]]
 	then
-		dch -c ${PACKAGES["$package"]}.changelog --create --empty --package xbmc-pvr-addons -v "${version}" --distribution ${dist} --force-distribution 2>/dev/null $(cat $changelog | tail -80)
+		dch -c ${PACKAGES["$package"]}.changelog --create --empty --package kodi-pvr-addons -v "${version}" --distribution ${dist} --force-distribution 2>/dev/null $(cat $changelog | tail -80)
 	else
-		dch -c ${PACKAGES["$package"]}.changelog --create --empty --package xbmc-pvr-addons -v "${version}" --distribution ${dist} --force-distribution 2>/dev/null "no upstream changelog available"
+		dch -c ${PACKAGES["$package"]}.changelog --create --empty --package kodi-pvr-addons -v "${version}" --distribution ${dist} --force-distribution 2>/dev/null "no upstream changelog available"
 	fi
 done
 
@@ -79,6 +79,6 @@ done
 #echo "${version}" > ${package}.version
 
 #[[ -f "${package}.changelog" ]] && mv ${package}.changelog ${package}.changelog.old
-#dch -c ${package}.changelog --create --empty --package xbmc-pvr-addons -v"${version}" --distribution ${dist} --force-distribution 2>/dev/null "no upstream changelog available"
+#dch -c ${package}.changelog --create --empty --package kodi-pvr-addons -v"${version}" --distribution ${dist} --force-distribution 2>/dev/null "no upstream changelog available"
 
 exit 0

@@ -1,34 +1,34 @@
-Source: xbmc-pvr-addons
+Source: kodi-pvr-addons
 Section: video
 Priority: extra
 Maintainer: wsnipex <wsnipex@a1.net>
-Build-Depends: debhelper (>= 8.0.0), autoconf, autopoint | gettext, automake, libtool, libboost-thread-dev, libmysqlclient-dev, pkg-config, vdr-dev (>= 1.7.17), devscripts, lsb-release, gawk
+Build-Depends: debhelper (>= 8.0.0), autoconf, autopoint | gettext, automake, libtool, pkg-config, devscripts, lsb-release, gawk
 Standards-Version: 3.9.3
-Homepage: http://xbmc.org
+Homepage: http://kodi.tv
 Vcs-Git: git://github.com/opdenkamp/xbmc-pvr-addons.git
 Vcs-Browser: https://github.com/opdenkamp/xbmc-pvr-addons/tree/frodo
 
-Package: xbmc-pvr-mythtv-cmyth
+Package: kodi-pvr-mythtv
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libmysqlclient19 | libmysqlclient18 | libmysqlclient17 | libmysqlclient16 | libmysqlclient15 | libmysqlclient14
-Description: XBMC PVR Addon MythTv - Cmyth - PVR API:#APIVERSION#
- This package contains the Cmyth PVR (Personal Video Recorder) Addon for XBMC,
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Kodi PVR Addon MythTv - Cmyth - PVR API:#APIVERSION#
+ This package contains the MythTV PVR (Personal Video Recorder) Addon for Kodi,
  the award winning free and open source software media-player and entertainment hub
  for all your digital media
 
-Package: xbmc-pvr-vuplus
+Package: kodi-pvr-vuplus
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: XBMC PVR Addon Vuplus - PVR API:#APIVERSION#
- This package contains the Vuplus PVR (Personal Video Recorder) Addon for XBMC,
+Description: Kodi PVR Addon Vuplus - PVR API:#APIVERSION#
+ This package contains the Vuplus PVR (Personal Video Recorder) Addon for Kodi,
  the award winning free and open source software media-player and entertainment hub
  for all your digital media
 
-Package: xbmc-pvr-vdr-vnsi
+Package: kodi-pvr-vdr-vnsi
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: XBMC PVR Addon VDR Vnsi - PVR API:#APIVERSION#
- This package contains the VDR Vnsi PVR (Personal Video Recorder) Addon for XBMC,
+Description: Kodi PVR Addon VDR Vnsi - PVR API:#APIVERSION#
+ This package contains the VDR Vnsi PVR (Personal Video Recorder) Addon for Kodi,
  the award winning free and open source software media-player and entertainment hub
  for all your digital media
 
@@ -38,67 +38,67 @@ Description: XBMC PVR Addon VDR Vnsi - PVR API:#APIVERSION#
 #Description: VDR-Network-Streaming-Interface - PVR API:#APIVERSION#
 # VDR-Network-Streaming-Interface
 
-Package: xbmc-pvr-njoy
+Package: kodi-pvr-njoy
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: XBMC PVR Addon Njoy - PVR API:#APIVERSION#
- This package contains the Njoy PVR (Personal Video Recorder) Addon for XBMC,
+Description: Kodi PVR Addon Njoy - PVR API:#APIVERSION#
+ This package contains the Njoy PVR (Personal Video Recorder) Addon for Kodi,
  the award winning free and open source software media-player and entertainment hub
  for all your digital media
 
-Package: xbmc-pvr-nextpvr
+Package: kodi-pvr-nextpvr
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: XBMC PVR Addon NextPvr - PVR API:#APIVERSION#
- This package contains the NextPvr PVR (Personal Video Recorder) Addon for XBMC,
+Description: Kodi PVR Addon NextPvr - PVR API:#APIVERSION#
+ This package contains the NextPvr PVR (Personal Video Recorder) Addon for Kodi,
  the award winning free and open source software media-player and entertainment hub
  for all your digital media
 
-Package: xbmc-pvr-mediaportal-tvserver
+Package: kodi-pvr-mediaportal-tvserver
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: XBMC PVR Addon Mediaportal Tvserver - PVR API:#APIVERSION#
- This package contains the Mediaportal PVR (Personal Video Recorder) Addon for XBMC,
+Description: Kodi PVR Addon Mediaportal Tvserver - PVR API:#APIVERSION#
+ This package contains the Mediaportal PVR (Personal Video Recorder) Addon for Kodi,
  the award winning free and open source software media-player and entertainment hub
  for all your digital media
 
-Package: xbmc-pvr-tvheadend-hts
+Package: kodi-pvr-tvheadend-hts
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: XBMC PVR Addon TvHeadend Hts - PVR API:#APIVERSION#
- This package contains the TvHeadend PVR (Personal Video Recorder) Addon for XBMC,
+Description: Kodi PVR Addon TvHeadend Hts - PVR API:#APIVERSION#
+ This package contains the TvHeadend PVR (Personal Video Recorder) Addon for Kodi,
  the award winning free and open source software media-player and entertainment hub
  for all your digital media
 
-Package: xbmc-pvr-dvbviewer
+Package: kodi-pvr-dvbviewer
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: XBMC PVR Addon Dvbviewer - PVR API:#APIVERSION#
- This package contains the Dvbviewer PVR (Personal Video Recorder) Addon for XBMC,
+Description: Kodi PVR Addon Dvbviewer - PVR API:#APIVERSION#
+ This package contains the Dvbviewer PVR (Personal Video Recorder) Addon for Kodi,
  the award winning free and open source software media-player and entertainment hub
  for all your digital media
 
-Package: xbmc-pvr-argustv
+Package: kodi-pvr-argustv
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: XBMC PVR Addon Argustv - PVR API:#APIVERSION#
- This package contains the Argustv PVR (Personal Video Recorder) Addon for XBMC,
+Description: Kodi PVR Addon Argustv - PVR API:#APIVERSION#
+ This package contains the Argustv PVR (Personal Video Recorder) Addon for Kodi,
  the award winning free and open source software media-player and entertainment hub
  for all your digital media
 
-Package: xbmc-pvr-demo
+Package: kodi-pvr-demo
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: XBMC PVR Demo Addon - PVR API:#APIVERSION# 
- This package contains the Demo PVR (Personal Video Recorder) Addon for XBMC,
+Description: Kodi PVR Demo Addon - PVR API:#APIVERSION# 
+ This package contains the Demo PVR (Personal Video Recorder) Addon for Kodi,
  the award winning free and open source software media-player and entertainment hub
  for all your digital media
 
-Package: xbmc-pvr-iptvsimple
+Package: kodi-pvr-iptvsimple
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: XBMC PVR Iptv Addon - PVR API:#APIVERSION#
- This package contains the Iptv PVR (Personal Video Recorder) Addon for XBMC,
+Description: Kodi PVR Iptv Addon - PVR API:#APIVERSION#
+ This package contains the Iptv PVR (Personal Video Recorder) Addon for Kodi,
  the award winning free and open source software media-player and entertainment hub
  for all your digital media
 
